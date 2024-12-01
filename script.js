@@ -5,3 +5,7 @@ function goToLogin() {
 function goToHome() {
   window.location.href = "main.html";
 }
+
+function goToSignup() {
+  window.location.href = "signup.html";
+}

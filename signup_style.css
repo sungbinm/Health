@@ -32,8 +32,8 @@
   flex: 1;
   align-self: stretch;
   flex-grow: 1;
-  margin-left: -91.50px;
-  margin-right: -91.50px;
+  margin-left: -91.5px;
+  margin-right: -91.5px;
   background-color: #ffffff;
   display: flex;
   align-items: center;
@@ -48,8 +48,8 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  margin-top: -6.50px;
-  margin-bottom: -6.50px;
+  margin-top: -6.5px;
+  margin-bottom: -6.5px;
   background-color: #ffffff;
 }
 
@@ -121,7 +121,7 @@
 .screen .label {
   position: relative;
   align-self: stretch;
-  margin-top: -1.00px;
+  margin-top: -1px;
   font-family: var(--body-base-font-family);
   font-weight: var(--body-base-font-weight);
   color: var(--color-text-default-default);
@@ -137,9 +137,9 @@
     var(--size-space-400);
   align-self: stretch;
   width: 100%;
-  margin-bottom: -1.00px;
-  margin-left: -1.00px;
-  margin-right: -1.00px;
+  margin-bottom: -1px;
+  margin-left: -1px;
+  margin-right: -1px;
   background-color: var(--color-background-default-default);
   border-radius: var(--size-radius-200);
   overflow: hidden;
@@ -147,7 +147,7 @@
   border-color: var(--color-border-default-default);
   position: relative;
   flex: 1;
-  margin-top: -0.50px;
+  margin-top: -0.5px;
   font-family: var(--single-line-body-base-font-family);
   font-weight: var(--single-line-body-base-font-weight);
   color: var(--color-text-default-tertiary);
@@ -168,7 +168,7 @@
   flex: 0 0 auto;
 }
 
-.screen .button {
+.text-wrapper {
   all: unset;
   box-sizing: border-box;
   display: flex;
@@ -177,21 +177,14 @@
   gap: var(--size-space-200);
   padding: var(--size-space-300);
   position: relative;
+  width: fit-content;
+  margin-top: -1px;
+  cursor: pointer;
   flex: 1;
   flex-grow: 1;
-  background-color: var(--color-background-brand-default);
-  border-radius: var(--size-radius-200);
   overflow: hidden;
+  background-color: black;
   border: 1px solid;
-  border-color: var(--color-border-brand-default);
-}
-
-.screen .text-wrapper {
-  all: unset;
-  box-sizing: border-box;
-  position: relative;
-  width: fit-content;
-  margin-top: -1.00px;
   font-family: var(--single-line-body-base-font-family);
   font-weight: var(--single-line-body-base-font-weight);
   color: var(--color-text-brand-on-brand);
@@ -200,6 +193,10 @@
   line-height: var(--single-line-body-base-line-height);
   white-space: nowrap;
   font-style: var(--single-line-body-base-font-style);
+}
+
+.text-wrapper:hover {
+  background-color: gray;
 }
 
 .screen .button-wrapper {
@@ -222,7 +219,7 @@
   box-sizing: border-box;
   position: relative;
   width: fit-content;
-  margin-top: -1.00px;
+  margin-top: -1px;
   font-family: var(--single-line-body-base-font-family);
   font-weight: var(--single-line-body-base-font-weight);
   color: var(--color-text-default-default);
@@ -231,10 +228,15 @@
   line-height: var(--single-line-body-base-line-height);
   white-space: nowrap;
   font-style: var(--single-line-body-base-font-style);
+  cursor: pointer;
 }
 
 .screen .home {
   position: relative;
   width: 48px;
   height: 48px;
+}
+
+.home {
+  cursor: pointer;
 }

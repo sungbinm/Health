@@ -228,6 +228,7 @@
   line-height: var(--single-line-body-base-line-height);
   white-space: nowrap;
   font-style: var(--single-line-body-base-font-style);
+  cursor: pointer;
 }
 
 .screen .general-home {
