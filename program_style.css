@@ -48,32 +48,19 @@
   flex: 0 0 auto;
 }
 
-.screen .button {
+.text-wrapper {
   all: unset;
   box-sizing: border-box;
   display: flex;
-  width: 52px;
-  height: 30px;
   align-items: center;
   justify-content: center;
-  gap: var(--size-space-200);
+  width: 52px;
+  height: 30px;
   padding: var(--size-space-300);
-  position: relative;
-  background-color: var(--color-background-brand-hover);
-  border-radius: var(--size-radius-200);
-  border: 1px solid;
-  border-color: var(--color-border-brand-default);
-}
-
-.screen .text-wrapper {
-  all: unset;
-  box-sizing: border-box;
-  position: relative;
-  width: fit-content;
-  margin-top: -6.00px;
-  margin-bottom: -4.00px;
-  margin-left: -8.50px;
-  margin-right: -8.50px;
+  cursor: pointer;
+  background-color: black;
+  border: 1px solid var(--color-border-brand-default);
+  border-radius: 3px;
   font-family: var(--single-line-body-base-font-family);
   font-weight: var(--single-line-body-base-font-weight);
   color: var(--color-text-brand-on-brand);
@@ -84,6 +71,9 @@
   font-style: var(--single-line-body-base-font-style);
 }
 
+.text-wrapper:hover {
+  background-color: gray;
+}
 .screen .frame-wrapper {
   display: flex;
   min-height: 690px;
@@ -111,10 +101,10 @@
   flex: 1;
   align-self: stretch;
   flex-grow: 1;
-  margin-top: -6.50px;
-  margin-bottom: -6.50px;
-  margin-left: -51.00px;
-  margin-right: -51.00px;
+  margin-top: -6.5px;
+  margin-bottom: -6.5px;
+  margin-left: -51px;
+  margin-right: -51px;
   background-color: #ffffff;
 }
 
@@ -132,7 +122,7 @@
 .screen .text-wrapper-2 {
   flex: 1;
   align-self: stretch;
-  margin-top: -1.00px;
+  margin-top: -1px;
   font-family: var(--heading-font-family);
   font-weight: var(--heading-font-weight);
   font-size: var(--heading-font-size);
@@ -147,7 +137,7 @@
 
 .screen .text-wrapper-3 {
   width: fit-content;
-  margin-top: -1.00px;
+  margin-top: -1px;
   font-family: var(--m3-title-small-font-family);
   font-weight: var(--m3-title-small-font-weight);
   font-size: var(--m3-title-small-font-size);
@@ -165,8 +155,8 @@
   padding: 30px 0px;
   position: relative;
   flex: 0 0 auto;
-  margin-left: -3.00px;
-  margin-right: -3.00px;
+  margin-left: -3px;
+  margin-right: -3px;
 }
 
 .screen .tabs {
@@ -194,7 +184,7 @@
   color: var(--color-text-neutral-default);
   position: relative;
   width: fit-content;
-  margin-top: -1.00px;
+  margin-top: -1px;
   font-family: var(--body-base-font-family);
   font-weight: var(--body-base-font-weight);
   font-size: var(--body-base-font-size);
@@ -222,7 +212,7 @@
   color: var(--color-text-neutral-tertiary);
   position: relative;
   width: fit-content;
-  margin-top: -1.00px;
+  margin-top: -1px;
   font-family: var(--body-base-font-family);
   font-weight: var(--body-base-font-weight);
   font-size: var(--body-base-font-size);
@@ -254,7 +244,7 @@
 .screen .p {
   align-self: stretch;
   height: 36px;
-  margin-top: -1.00px;
+  margin-top: -1px;
   font-family: var(--m3-body-large-font-family);
   font-weight: var(--m3-body-large-font-weight);
   font-size: var(--m3-body-large-font-size);
@@ -291,29 +281,23 @@
   height: 36px;
 }
 
-.screen .button-wrapper {
+.screen .button-2 {
   all: unset;
   box-sizing: border-box;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  width: fit-content;
   gap: var(--size-space-200);
   padding: var(--size-space-300);
-  position: relative;
   flex: 0 0 auto;
+  margin-top: -1px;
   background-color: var(--color-background-brand-default);
   border-radius: var(--size-radius-200);
   overflow: hidden;
   border: 1px solid;
   border-color: var(--color-border-brand-default);
-}
-
-.screen .button-2 {
-  all: unset;
-  box-sizing: border-box;
-  position: relative;
-  width: fit-content;
-  margin-top: -1.00px;
   font-family: var(--single-line-body-base-font-family);
   font-weight: var(--single-line-body-base-font-weight);
   color: var(--color-text-brand-on-brand);
@@ -322,6 +306,10 @@
   line-height: var(--single-line-body-base-line-height);
   white-space: nowrap;
   font-style: var(--single-line-body-base-font-style);
+}
+
+.button-2:hover {
+  background-color: gray;
 }
 
 .screen .frame-7 {
@@ -347,8 +335,8 @@
   position: relative;
   width: 73px;
   height: 67px;
-  margin-top: -7.00px;
-  margin-bottom: -7.00px;
+  margin-top: -7px;
+  margin-bottom: -7px;
 }
 
 .screen .frame-8 {
@@ -360,8 +348,8 @@
   gap: 8px;
   padding: 10px;
   position: relative;
-  margin-top: -7.00px;
-  margin-bottom: -7.00px;
+  margin-top: -7px;
+  margin-bottom: -7px;
   background-color: #fbfbfb;
   border-radius: 20px;
 }
@@ -413,8 +401,14 @@
   gap: 8px;
   padding: 10px;
   position: relative;
-  margin-top: -7.00px;
-  margin-bottom: -7.00px;
+  margin-top: -7px;
+  margin-bottom: -7px;
   background-color: #fbfbfb;
   border-radius: 20px;
+}
+
+.img,
+.frame-8,
+.frame-10 {
+  cursor: pointer;
 }
