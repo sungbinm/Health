@@ -9,3 +9,11 @@ function goToHome() {
 function goToSignup() {
   window.location.href = "signup.html";
 }
+
+function goToWorkoutexplanation() {
+  window.location.href = "workout_explanation.html";
+}
+
+function goBack() {
+  history.back();
+}

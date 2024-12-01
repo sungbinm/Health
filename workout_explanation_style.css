@@ -48,32 +48,19 @@
   flex: 0 0 auto;
 }
 
-.screen .button {
+.text-wrapper {
   all: unset;
   box-sizing: border-box;
   display: flex;
-  width: 52px;
-  height: 30px;
   align-items: center;
   justify-content: center;
-  gap: var(--size-space-200);
+  width: 52px;
+  height: 30px;
   padding: var(--size-space-300);
-  position: relative;
-  background-color: var(--color-background-brand-default);
-  border-radius: var(--size-radius-200);
-  border: 1px solid;
-  border-color: var(--color-border-brand-default);
-}
-
-.screen .text-wrapper {
-  all: unset;
-  box-sizing: border-box;
-  position: relative;
-  width: fit-content;
-  margin-top: -6.00px;
-  margin-bottom: -4.00px;
-  margin-left: -8.50px;
-  margin-right: -8.50px;
+  cursor: pointer;
+  background-color: black;
+  border: 1px solid var(--color-border-brand-default);
+  border-radius: 3px;
   font-family: var(--single-line-body-base-font-family);
   font-weight: var(--single-line-body-base-font-weight);
   color: var(--color-text-brand-on-brand);
@@ -82,6 +69,10 @@
   line-height: var(--single-line-body-base-line-height);
   white-space: nowrap;
   font-style: var(--single-line-body-base-font-style);
+}
+
+.text-wrapper:hover {
+  background-color: gray;
 }
 
 .screen .frame-wrapper {
@@ -111,10 +102,10 @@
   flex: 1;
   align-self: stretch;
   flex-grow: 1;
-  margin-top: -6.50px;
-  margin-bottom: -6.50px;
-  margin-left: -23.50px;
-  margin-right: -23.50px;
+  margin-top: -6.5px;
+  margin-bottom: -6.5px;
+  margin-left: -23.5px;
+  margin-right: -23.5px;
   background-color: #ffffff;
 }
 
@@ -134,7 +125,7 @@
   font-size: 32px;
   position: relative;
   flex: 1;
-  margin-top: -1.00px;
+  margin-top: -1px;
   font-family: "Inter", Helvetica;
   color: #000000;
   letter-spacing: 0;
@@ -156,7 +147,7 @@
   font-size: 14px;
   position: relative;
   flex: 1;
-  margin-top: -1.00px;
+  margin-top: -1px;
   font-family: "Inter", Helvetica;
   color: #000000;
   letter-spacing: 0;
@@ -180,15 +171,15 @@
   position: relative;
   width: 16px;
   height: 16px;
-  margin-top: -4.50px;
-  margin-bottom: -4.50px;
+  margin-top: -4.5px;
+  margin-bottom: -4.5px;
 }
 
 .screen .text-wrapper-4 {
   position: relative;
   width: fit-content;
-  margin-top: -5.50px;
-  margin-bottom: -3.50px;
+  margin-top: -5.5px;
+  margin-bottom: -3.5px;
   font-family: var(--single-line-body-base-font-family);
   font-weight: var(--single-line-body-base-font-weight);
   color: var(--color-text-default-default);
@@ -216,16 +207,16 @@
   position: relative;
   width: 172px;
   height: 172px;
-  margin-top: -10.50px;
-  margin-bottom: -10.50px;
-  margin-left: -15.50px;
+  margin-top: -10.5px;
+  margin-bottom: -10.5px;
+  margin-left: -15.5px;
   object-fit: cover;
 }
 
 .screen .img {
-  margin-top: -10.50px;
-  margin-bottom: -10.50px;
-  margin-right: -15.50px;
+  margin-top: -10.5px;
+  margin-bottom: -10.5px;
+  margin-right: -15.5px;
   position: relative;
   width: 172px;
   height: 172px;
@@ -246,7 +237,7 @@
 }
 
 .screen .image-2 {
-  margin-left: -15.50px;
+  margin-left: -15.5px;
   position: relative;
   width: 172px;
   height: 172px;
@@ -254,7 +245,7 @@
 }
 
 .screen .image-3 {
-  margin-right: -15.50px;
+  margin-right: -15.5px;
   position: relative;
   width: 172px;
   height: 172px;
@@ -275,9 +266,9 @@
 }
 
 .screen .image-4 {
-  margin-top: -37.00px;
-  margin-bottom: -37.00px;
-  margin-left: -15.50px;
+  margin-top: -37px;
+  margin-bottom: -37px;
+  margin-left: -15.5px;
   position: relative;
   width: 172px;
   height: 172px;
@@ -285,9 +276,9 @@
 }
 
 .screen .image-5 {
-  margin-top: -37.00px;
-  margin-bottom: -37.00px;
-  margin-right: -15.50px;
+  margin-top: -37px;
+  margin-bottom: -37px;
+  margin-right: -15.5px;
   position: relative;
   width: 172px;
   height: 172px;
@@ -317,8 +308,8 @@
   position: relative;
   width: 73px;
   height: 67px;
-  margin-top: -7.00px;
-  margin-bottom: -7.00px;
+  margin-top: -7px;
+  margin-bottom: -7px;
 }
 
 .screen .frame-9 {
@@ -330,8 +321,8 @@
   gap: 8px;
   padding: 10px;
   position: relative;
-  margin-top: -7.00px;
-  margin-bottom: -7.00px;
+  margin-top: -7px;
+  margin-bottom: -7px;
   background-color: #fbfbfb;
   border-radius: 20px;
 }
@@ -383,8 +374,16 @@
   gap: 8px;
   padding: 10px;
   position: relative;
-  margin-top: -7.00px;
-  margin-bottom: -7.00px;
+  margin-top: -7px;
+  margin-bottom: -7px;
   background-color: #fbfbfb;
   border-radius: 20px;
+}
+
+.frame-9,
+.frame-8,
+.frame-11,
+.arrow-left,
+.text-wrapper-4 {
+  cursor: pointer;
 }
