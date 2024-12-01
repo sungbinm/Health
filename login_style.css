@@ -168,7 +168,7 @@
   flex: 0 0 auto;
 }
 
-.screen .button {
+.text-wrapper {
   all: unset;
   box-sizing: border-box;
   display: flex;
@@ -177,21 +177,14 @@
   gap: var(--size-space-200);
   padding: var(--size-space-300);
   position: relative;
-  flex: 1;
-  flex-grow: 1;
-  background-color: var(--color-background-brand-default);
-  border-radius: var(--size-radius-200);
-  overflow: hidden;
-  border: 1px solid;
-  border-color: var(--color-border-brand-default);
-}
-
-.screen .text-wrapper {
-  all: unset;
-  box-sizing: border-box;
-  position: relative;
   width: fit-content;
   margin-top: -1px;
+  cursor: pointer;
+  flex: 1;
+  flex-grow: 1;
+  overflow: hidden;
+  background-color: black;
+  border: 1px solid;
   font-family: var(--single-line-body-base-font-family);
   font-weight: var(--single-line-body-base-font-weight);
   color: var(--color-text-brand-on-brand);
