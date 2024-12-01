@@ -1,0 +1,88 @@
+:root {
+  --single-line-body-base-font-family: "Inter", Helvetica;
+  --single-line-body-base-font-weight: 400;
+  --single-line-body-base-font-size: 16px;
+  --single-line-body-base-letter-spacing: 0px;
+  --single-line-body-base-line-height: 100%;
+  --single-line-body-base-font-style: normal;
+  --heading-font-family: "Inter", Helvetica;
+  --heading-font-weight: 600;
+  --heading-font-size: 24px;
+  --heading-letter-spacing: -0.48px;
+  --heading-line-height: 120.00000476837158%;
+  --heading-font-style: normal;
+  --m3-title-small-font-family: "Roboto", Helvetica;
+  --m3-title-small-font-weight: 500;
+  --m3-title-small-font-size: 14px;
+  --m3-title-small-letter-spacing: 0.10000000149011612px;
+  --m3-title-small-line-height: 20px;
+  --m3-title-small-font-style: normal;
+  --body-base-font-family: "Inter", Helvetica;
+  --body-base-font-weight: 400;
+  --body-base-font-size: 16px;
+  --body-base-letter-spacing: 0px;
+  --body-base-line-height: 139.9999976158142%;
+  --body-base-font-style: normal;
+  --m3-body-large-font-family: "Roboto", Helvetica;
+  --m3-body-large-font-weight: 400;
+  --m3-body-large-font-size: 16px;
+  --m3-body-large-letter-spacing: 0.5px;
+  --m3-body-large-line-height: 24px;
+  --m3-body-large-font-style: normal;
+  --color-text-brand-on-brand: var(--color-primitives-brand-100);
+  --color-text-neutral-default: var(--color-primitives-slate-900);
+  --color-text-neutral-tertiary: var(--color-primitives-slate-600);
+  --color-border-neutral-tertiary: var(--color-primitives-slate-400);
+  --color-border-neutral-default: var(--color-primitives-slate-900);
+  --color-background-brand-default: var(--color-primitives-brand-800);
+  --color-background-brand-hover: var(--color-primitives-brand-900);
+  --color-border-brand-default: var(--color-primitives-brand-800);
+  --color-primitives-brand-100: rgba(245, 245, 245, 1);
+  --color-primitives-slate-900: rgba(48, 48, 48, 1);
+  --color-primitives-slate-600: rgba(118, 118, 118, 1);
+  --color-primitives-slate-400: rgba(178, 178, 178, 1);
+  --color-primitives-brand-900: rgba(30, 30, 30, 1);
+  --color-primitives-slate-200: rgba(227, 227, 227, 1);
+  --color-primitives-brand-800: rgba(44, 44, 44, 1);
+  --color-primitives-slate-100: rgba(243, 243, 243, 1);
+  --color-primitives-brand-300: rgba(217, 217, 217, 1);
+  --size-space-300: 12px;
+  --size-space-100: 4px;
+  --size-space-200: 8px;
+  --size-radius-100: 4px;
+  --size-radius-200: 8px;
+}
+
+/*
+
+To enable a theme in your HTML, simply add one of the following data attributes to an HTML element, like so:
+
+<body data-color-mode="SDS-light">
+    <!-- the rest of your content -->
+</body>
+
+You can apply the theme on any DOM node, not just the `body`
+
+*/
+
+[data-color-mode="SDS-light"] {
+  --color-text-brand-on-brand: var(--color-primitives-brand-100);
+  --color-text-neutral-default: var(--color-primitives-slate-900);
+  --color-text-neutral-tertiary: var(--color-primitives-slate-600);
+  --color-border-neutral-tertiary: var(--color-primitives-slate-400);
+  --color-border-neutral-default: var(--color-primitives-slate-900);
+  --color-background-brand-default: var(--color-primitives-brand-800);
+  --color-background-brand-hover: var(--color-primitives-brand-900);
+  --color-border-brand-default: var(--color-primitives-brand-800);
+}
+
+[data-color-mode="SDS-dark"] {
+  --color-text-brand-on-brand: var(--color-primitives-brand-900);
+  --color-text-neutral-default: var(--color-primitives-slate-200);
+  --color-text-neutral-tertiary: var(--color-primitives-slate-400);
+  --color-border-neutral-tertiary: var(--color-primitives-slate-600);
+  --color-border-neutral-default: var(--color-primitives-slate-100);
+  --color-background-brand-default: var(--color-primitives-brand-100);
+  --color-background-brand-hover: var(--color-primitives-brand-300);
+  --color-border-brand-default: var(--color-primitives-brand-100);
+}
