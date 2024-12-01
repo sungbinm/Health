@@ -195,6 +195,10 @@
   font-style: var(--single-line-body-base-font-style);
 }
 
+.text-wrapper:hover {
+  background-color: gray;
+}
+
 .screen .button-wrapper {
   all: unset;
   box-sizing: border-box;
@@ -230,4 +234,8 @@
   position: relative;
   width: 24px;
   height: 24px;
+}
+
+.general-home {
+  cursor: pointer;
 }

@@ -261,3 +261,33 @@
   background-color: #fbfbfb;
   border-radius: 20px;
 }
+
+.frame-5 {
+  cursor: pointer;
+}
+
+.frame-6 {
+  cursor: pointer;
+}
+
+.frame-8 {
+  cursor: pointer;
+}
+
+.img,
+.image,
+.image-2,
+.subtract,
+.subtract-2 {
+  cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
+}
+
+.img:hover,
+.image:hover,
+.image-2:hover,
+.subtract:hover,
+.subtract-2:hover {
+  filter: saturate(2);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+}
