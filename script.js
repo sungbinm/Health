@@ -21,3 +21,7 @@ function goBack() {
 function goToDeloading() {
   window.location.href = "volume_deloading.html";
 }
+
+function goToProgram() {
+  window.location.href = "program.html";
+}
