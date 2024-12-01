@@ -17,3 +17,7 @@ function goToWorkoutexplanation() {
 function goBack() {
   history.back();
 }
+
+function goToDeloading() {
+  window.location.href = "volume_deloading.html";
+}
