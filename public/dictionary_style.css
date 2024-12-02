@@ -57,12 +57,16 @@
 .screen .text-wrapper {
   all: unset;
   box-sizing: border-box;
-  position: relative;
-  width: fit-content;
-  margin-top: -6.00px;
-  margin-bottom: -4.00px;
-  margin-left: -8.50px;
-  margin-right: -8.50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 30px;
+  padding: var(--size-space-300);
+  cursor: pointer;
+  background-color: black;
+  border: 1px solid var(--color-border-brand-default);
+  border-radius: 3px;
   font-family: var(--single-line-body-base-font-family);
   font-weight: var(--single-line-body-base-font-weight);
   color: var(--color-text-brand-on-brand);
@@ -125,7 +129,7 @@
 
 .screen .frame-2 {
   display: flex;
-  width: 126px;
+  width: 180px;
   height: 51px;
   align-items: flex-start;
   justify-content: center;
@@ -148,7 +152,7 @@
 
 .screen .frame-3 {
   display: flex;
-  width: 137px;
+  width: 180px;
   align-items: center;
   justify-content: center;
   gap: 10px;
