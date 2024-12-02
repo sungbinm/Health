@@ -26,6 +26,10 @@ function goToProgram() {
   window.location.href = "program.html";
 }
 
+function goToDictionary() {
+  window.location.href = "dictionary.html";
+}
+
 //회원가입
 
 //아이디 정보
