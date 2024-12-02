@@ -1,0 +1,224 @@
+:root {
+    --single-line-body-base-font-family: "Inter", Helvetica;
+    --single-line-body-base-font-weight: 400;
+    --single-line-body-base-font-size: 16px;
+    --single-line-body-base-letter-spacing: 0px;
+    --single-line-body-base-line-height: 100%;
+    --single-line-body-base-font-style: normal;
+    --body-base-font-family: "Inter", Helvetica;
+    --body-base-font-weight: 400;
+    --body-base-font-size: 16px;
+    --body-base-letter-spacing: 0px;
+    --body-base-line-height: 139.9999976158142%;
+    --body-base-font-style: normal;
+    --m3-body-large-font-family: "Roboto", Helvetica;
+    --m3-body-large-font-weight: 400;
+    --m3-body-large-font-size: 16px;
+    --m3-body-large-letter-spacing: 0.5px;
+    --m3-body-large-line-height: 24px;
+    --m3-body-large-font-style: normal;
+    --m3-title-small-font-family: "Roboto", Helvetica;
+    --m3-title-small-font-weight: 500;
+    --m3-title-small-font-size: 14px;
+    --m3-title-small-letter-spacing: 0.10000000149011612px;
+    --m3-title-small-line-height: 20px;
+    --m3-title-small-font-style: normal;
+    --body-small-strong-font-family: "Inter", Helvetica;
+    --body-small-strong-font-weight: 600;
+    --body-small-strong-font-size: 14px;
+    --body-small-strong-letter-spacing: 0px;
+    --body-small-strong-line-height: 139.9999976158142%;
+    --body-small-strong-font-style: normal;
+    --color-text-brand-on-brand: var(--color-primitives-brand-100);
+    --color-text-neutral-default: var(--color-primitives-slate-900);
+    --color-text-neutral-tertiary: var(--color-primitives-slate-600);
+    --color-background-positive-secondary: var(--color-primitives-green-200);
+    --color-border-neutral-tertiary: var(--color-primitives-slate-400);
+    --color-background-danger-default: var(--color-primitives-red-500);
+    --color-border-neutral-default: var(--color-primitives-slate-900);
+    --color-background-brand-default: var(--color-primitives-brand-800);
+    --color-border-brand-default: var(--color-primitives-brand-800);
+    --size-space-200: 8px;
+    --size-space-300: 12px;
+    --size-space-100: 4px;
+    --size-radius-100: 4px;
+    --size-radius-200: 8px;
+    --m3-schemes-error-container: rgba(249, 222, 220, 1);
+    --color-primitives-brand-100: rgba(245, 245, 245, 1);
+    --color-primitives-slate-900: rgba(48, 48, 48, 1);
+    --color-primitives-slate-600: rgba(118, 118, 118, 1);
+    --color-primitives-green-200: rgba(207, 247, 211, 1);
+    --color-primitives-slate-400: rgba(178, 178, 178, 1);
+    --color-primitives-brand-900: rgba(30, 30, 30, 1);
+    --color-primitives-slate-200: rgba(227, 227, 227, 1);
+    --color-primitives-green-800: rgba(2, 84, 45, 1);
+    --color-primitives-red-500: rgba(236, 34, 31, 1);
+    --color-primitives-brand-800: rgba(44, 44, 44, 1);
+    --color-primitives-slate-100: rgba(243, 243, 243, 1);
+    --color-primitives-red-600: rgba(192, 15, 12, 1);
+  }
+  
+  /*
+  
+  To enable a theme in your HTML, simply add one of the following data attributes to an HTML element, like so:
+  
+  <body data-color-mode="SDS-light">
+      <!-- the rest of your content -->
+  </body>
+  
+  You can apply the theme on any DOM node, not just the `body`
+  
+  */
+  
+  [data-color-mode="SDS-light"] {
+    --color-text-brand-on-brand: var(--color-primitives-brand-100);
+    --color-text-neutral-default: var(--color-primitives-slate-900);
+    --color-text-neutral-tertiary: var(--color-primitives-slate-600);
+    --color-background-positive-secondary: var(--color-primitives-green-200);
+    --color-border-neutral-tertiary: var(--color-primitives-slate-400);
+    --color-background-danger-default: var(--color-primitives-red-500);
+    --color-border-neutral-default: var(--color-primitives-slate-900);
+    --color-background-brand-default: var(--color-primitives-brand-800);
+    --color-border-brand-default: var(--color-primitives-brand-800);
+  }
+  
+  [data-color-mode="SDS-dark"] {
+    --color-text-brand-on-brand: var(--color-primitives-brand-900);
+    --color-text-neutral-default: var(--color-primitives-slate-200);
+    --color-text-neutral-tertiary: var(--color-primitives-slate-400);
+    --color-background-positive-secondary: var(--color-primitives-green-800);
+    --color-border-neutral-tertiary: var(--color-primitives-slate-600);
+    --color-background-danger-default: var(--color-primitives-red-600);
+    --color-border-neutral-default: var(--color-primitives-slate-100);
+    --color-background-brand-default: var(--color-primitives-brand-100);
+    --color-border-brand-default: var(--color-primitives-brand-100);
+  }
+  
+  [data-m3-mode="light"] {
+    --m3-schemes-error-container: rgba(249, 222, 220, 1);
+  }
+  
+  [data-m3-mode="light-high-contrast"] {
+    --m3-schemes-error-container: rgba(110, 47, 44, 1);
+  }
+  
+  [data-m3-mode="light-medium-contrast"] {
+    --m3-schemes-error-container: rgba(170, 95, 90, 1);
+  }
+  
+  [data-m3-mode="dark"] {
+    --m3-schemes-error-container: rgba(140, 29, 24, 1);
+  }
+  
+  [data-m3-mode="dark-high-contrast"] {
+    --m3-schemes-error-container: rgba(255, 185, 179, 1);
+  }
+  
+  [data-m3-mode="dark-medium-contrast"] {
+    --m3-schemes-error-container: rgba(204, 123, 116, 1);
+  }
+  
+  [data-m3-mode="monochrome-LT"] {
+    --m3-schemes-error-container: rgba(249, 222, 220, 1);
+  }
+  
+  [data-m3-mode="monochrome-DT"] {
+    --m3-schemes-error-container: rgba(140, 29, 24, 1);
+  }
+  
+  [data-m3-mode="pink-LT"] {
+    --m3-schemes-error-container: rgba(249, 222, 220, 1);
+  }
+  
+  [data-m3-mode="pink-DT"] {
+    --m3-schemes-error-container: rgba(140, 29, 24, 1);
+  }
+  
+  [data-m3-mode="rose-LT"] {
+    --m3-schemes-error-container: rgba(249, 222, 220, 1);
+  }
+  
+  [data-m3-mode="rose-DT"] {
+    --m3-schemes-error-container: rgba(140, 29, 24, 1);
+  }
+  
+  [data-m3-mode="red-LT"] {
+    --m3-schemes-error-container: rgba(249, 222, 220, 1);
+  }
+  
+  [data-m3-mode="red-DT"] {
+    --m3-schemes-error-container: rgba(140, 29, 24, 1);
+  }
+  
+  [data-m3-mode="orange-LT"] {
+    --m3-schemes-error-container: rgba(249, 222, 220, 1);
+  }
+  
+  [data-m3-mode="orange-DT"] {
+    --m3-schemes-error-container: rgba(140, 29, 24, 1);
+  }
+  
+  [data-m3-mode="yellow-LT"] {
+    --m3-schemes-error-container: rgba(249, 222, 220, 1);
+  }
+  
+  [data-m3-mode="yellow-DT"] {
+    --m3-schemes-error-container: rgba(140, 29, 24, 1);
+  }
+  
+  [data-m3-mode="chartreuse-LT"] {
+    --m3-schemes-error-container: rgba(249, 222, 220, 1);
+  }
+  
+  [data-m3-mode="chartreuse-DT"] {
+    --m3-schemes-error-container: rgba(140, 29, 24, 1);
+  }
+  
+  [data-m3-mode="green-LT"] {
+    --m3-schemes-error-container: rgba(249, 222, 220, 1);
+  }
+  
+  [data-m3-mode="green-DT"] {
+    --m3-schemes-error-container: rgba(140, 29, 24, 1);
+  }
+  
+  [data-m3-mode="teal-LT"] {
+    --m3-schemes-error-container: rgba(249, 222, 220, 1);
+  }
+  
+  [data-m3-mode="teal-DT"] {
+    --m3-schemes-error-container: rgba(140, 29, 24, 1);
+  }
+  
+  [data-m3-mode="cyan-LT"] {
+    --m3-schemes-error-container: rgba(249, 222, 220, 1);
+  }
+  
+  [data-m3-mode="cyan-DT"] {
+    --m3-schemes-error-container: rgba(140, 29, 24, 1);
+  }
+  
+  [data-m3-mode="blue-LT"] {
+    --m3-schemes-error-container: rgba(249, 222, 220, 1);
+  }
+  
+  [data-m3-mode="blue-DT"] {
+    --m3-schemes-error-container: rgba(140, 29, 24, 1);
+  }
+  
+  [data-m3-mode="indigo-LT"] {
+    --m3-schemes-error-container: rgba(249, 222, 220, 1);
+  }
+  
+  [data-m3-mode="indigo-DT"] {
+    --m3-schemes-error-container: rgba(140, 29, 24, 1);
+  }
+  
+  [data-m3-mode="purple-LT"] {
+    --m3-schemes-error-container: rgba(249, 222, 220, 1);
+  }
+  
+  [data-m3-mode="purple-DT"] {
+    --m3-schemes-error-container: rgba(140, 29, 24, 1);
+  }
+  
