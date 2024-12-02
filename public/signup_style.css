@@ -157,7 +157,7 @@
   font-style: var(--single-line-body-base-font-style);
 }
 
-.screen .button-group {
+.screen .signup {
   all: unset;
   box-sizing: border-box;
   display: flex;
@@ -239,4 +239,8 @@
 
 .home {
   cursor: pointer;
+}
+
+.hide {
+  display: none;
 }

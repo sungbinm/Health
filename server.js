@@ -16,7 +16,7 @@ app.get("/", (req, res) => {
 });
 
 // 회원가입 라우트
-app.post("/register.html", (req, res) => {
+app.post("/register", (req, res) => {
   const { id, password } = req.body;
   // 간단한 유효성 검사
   if (!id || !password) {
@@ -35,7 +35,7 @@ app.post("/register.html", (req, res) => {
 });
 
 // 로그인 라우트
-app.post("/login.html", (req, res) => {
+app.post("/login", (req, res) => {
   const { id, password } = req.body;
   const user = users.find(
     (user) => user.id === id && user.password === password

@@ -5,7 +5,6 @@
     <link rel="stylesheet" href="globals.css" />
     <link rel="stylesheet" href="signup_styleguide.css" />
     <link rel="stylesheet" href="signup_style.css" />
-    <script src="script.js"></script>
   </head>
   <body>
     <div class="screen">
@@ -20,16 +19,27 @@
                   <div class="form-register">
                     <div class="input-field">
                       <div class="label">ID</div>
-                      <input class="input" placeholder="Input ID" type="text" />
+                      <input class="input" placeholder="Input ID" type="text"
+                        id="username" />
                     </div>
+                    <div class="success-message hide">사용할 수 있는 아이디입니다</div>
+                    <div class="failure-message hide">아이디는 4~12글자이어야 합니다</div>
+                    <div class="failure-message2 hide">영어 또는 숫자만 가능합니다</div>
                     <div class="input-field">
                       <label class="label" for="input-1">Password</label>
                       <input class="input" placeholder="Input Password"
-                        type="text" id="input-1" />
+                        type="text" id="password" />
                     </div>
-                    <div class="button-group">
-                      <button class="text-wrapper"
-                        onclick="Register()">Register</button>
+                    <div class="strongPassword-message hide">8글자 이상, 영문, 숫자,
+                      특수문자(@$!%*#?&)를 사용하세요</div>
+                    <div class="input-field">
+                      <label class="label" for="input-1">비밀번호확인</label>
+                      <input class="input" placeholder="Input Password"
+                        type="text" id="password-retype" />
+                    </div>
+                    <div class="mismatch-message hide">비밀번호가 일치하지 않습니다</div>
+                    <div class="signup">
+                      <button class="text-wrapper">Register</button>
                     </div>
                   </div>
                   <button class="button-wrapper"><button class="button-2"
@@ -45,5 +55,6 @@
         </div>
       </div>
     </div>
+    <script src="script.js"></script>
   </body>
 </html>
