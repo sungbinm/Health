@@ -34,6 +34,9 @@ function goToStretching() {
   window.location.href = "stretching.html";
 }
 
+function goToTraining() {
+  window.location.href = "training.html";
+}
 //회원가입
 
 //아이디 정보
