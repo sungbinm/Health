@@ -1,57 +1,61 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const app = express();
+const cors = require("cors");
+const path = require("path");
 
-// 사용자 데이터를 저장할 간단한 배열 (데이터베이스 역할)
-let users = [];
+const app = express();
+const PORT = 3000;
 
 // 미들웨어 설정
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
 
-// 정적 파일 제공 (HTML, CSS, JS)
-app.use(express.static("public"));
+// 정적 파일 서빙 (public 폴더의 파일을 제공)
+app.use(express.static(path.join(__dirname, "public")));
+
+// 기본 경로 처리
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/public/signup.html");
+  res.sendFile(path.join(__dirname, "public", "main.html"));
 });
 
-// 회원가입 라우트
-app.post("/register", (req, res) => {
-  const { id, password } = req.body;
-  // 간단한 유효성 검사
-  if (!id || !password) {
-    return res.status(400).json({ message: "ID와 Password를 입력하세요." });
+// 임시 사용자 데이터베이스
+let users = [];
+
+// 회원가입 API
+app.post("/signup", (req, res) => {
+  const { username, password } = req.body;
+
+  // 중복 확인
+  if (users.find((user) => user.username === username)) {
+    return res.status(400).json({ message: "이미 사용 중인 아이디입니다." });
   }
 
-  // 중복 체크
-  const userExists = users.some((user) => user.id === id);
-  if (userExists) {
-    return res.status(400).json({ message: "이미 존재하는 ID입니다." });
-  }
-
-  // 사용자 저장
-  users.push({ id, password });
-  res.json({ message: "회원가입 성공!" });
+  // 사용자 등록
+  users.push({ username, password });
+  res.status(201).json({ message: "회원가입 성공!" });
 });
 
-// 로그인 라우트
+// 로그인 API
 app.post("/login", (req, res) => {
-  const { id, password } = req.body;
+  const { username, password } = req.body;
+
+  // 사용자 인증
   const user = users.find(
-    (user) => user.id === id && user.password === password
+    (user) => user.username === username && user.password === password
   );
+
   if (!user) {
     return res
       .status(401)
-      .json({ message: "ID 또는 Password가 올바르지 않습니다." });
+      .json({ message: "아이디 또는 비밀번호가 틀렸습니다." });
   }
 
-  res.json({ message: "로그인 성공!" });
+  res.status(200).json({ message: "로그인 성공!", username });
 });
 
-// 서버 시작
-app.listen(3000, () => {
-  console.log("서버가 http://localhost:3000 에서 실행 중입니다.");
+// 서버 실행
+app.listen(PORT, () => {
+  console.log(`서버가 http://localhost:${PORT}에서 실행 중입니다.`);
 });
 
 //현재 상태 : node.js 프레임워크 express로 로그인 회원가입을 위한 서버구성
