@@ -112,17 +112,51 @@ document.addEventListener("DOMContentLoaded", () => {
   const elInputUsername = document.querySelector("#username");
   const elInputPassword = document.querySelector("#password");
 
+  //클릭시 동작
   registerButton.addEventListener("click", (e) => {
     e.preventDefault();
+    handleRegister();
+  });
 
+  //엔터키 눌러도 동작
+  registerButton.addEventListener("keydown", (e) => {
+    e.preventDefault();
+    handleRegister();
+  });
+
+  //회원가입 요청 함수
+  function handleRegister() {
     const username = elInputUsername.value.trim();
     const password = elInputPassword.value.trim();
+    const retypePassword = elInputPasswordRetype.value.trim();
 
-    if (!username || !password) {
-      alert("아이디와 비밀번호를 입력해주세요.");
+    // 유효성 검사
+    if (!username || !password || !retypePassword) {
+      alert("아이디와 비밀번호를 모두 입력해주세요.");
       return;
     }
 
+    if (!idLength(username)) {
+      alert("아이디는 4~12자 이내여야 합니다.");
+      return;
+    }
+
+    if (!onlyNumberAndEnglish(username)) {
+      alert("아이디는 영어 또는 숫자만 포함할 수 있습니다.");
+      return;
+    }
+
+    if (!strongPassword(password)) {
+      alert("비밀번호는 8자 이상, 영문, 숫자, 특수문자를 포함해야 합니다.");
+      return;
+    }
+
+    if (!isMatch(password, retypePassword)) {
+      alert("비밀번호가 일치하지 않습니다.");
+      return;
+    }
+
+    // 서버로 회원가입 요청 보내기
     fetch("http://localhost:3000/signup", {
       method: "POST",
       headers: {
@@ -130,18 +164,17 @@ document.addEventListener("DOMContentLoaded", () => {
       },
       body: JSON.stringify({ username, password }),
     })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("회원가입 실패");
-        }
-        return response.json();
-      })
+      .then((response) => response.json())
       .then((data) => {
-        alert(data.message);
-        window.location.href = "login.html";
+        if (data.message === "회원가입 성공!") {
+          alert(data.message);
+          window.location.href = "login.html"; // 성공하면 로그인 페이지로 이동
+        } else {
+          alert(data.message); // 오류 메시지 표시 (예: 이미 사용 중인 아이디)
+        }
       })
       .catch((error) => {
-        alert(error.message);
+        alert("회원가입 실패: " + error.message);
       });
-  });
+  }
 });
