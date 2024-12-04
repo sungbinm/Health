@@ -3,19 +3,22 @@ document.addEventListener("DOMContentLoaded", () => {
   const elInputUsername = document.querySelector("#username");
   const elInputPassword = document.querySelector("#password");
 
-//클릭시 동작
+  //클릭시 동작
   loginButton.addEventListener("click", (e) => {
     e.preventDefault();
     handleLogin();
   });
 
-  loginButton.addEventListener("keydown", (e) => {
-    e.preventDefault();
-    handleLogin();
-  })
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      // Enter 키를 감지
+      e.preventDefault();
+      handleLogin();
+    }
+  });
 
-function handleLogin() {
-  const username = elInputUsername.value.trim();
+  function handleLogin() {
+    const username = elInputUsername.value.trim();
     const password = elInputPassword.value.trim();
 
     // 유효성 검사
