@@ -119,9 +119,12 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   //엔터키 눌러도 동작
-  registerButton.addEventListener("keydown", (e) => {
-    e.preventDefault();
-    handleRegister();
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      // Enter 키를 감지
+      e.preventDefault();
+      handleLogin();
+    }
   });
 
   //회원가입 요청 함수
