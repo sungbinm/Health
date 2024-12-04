@@ -50,8 +50,16 @@ app.post("/login", (req, res) => {
       .json({ message: "아이디 또는 비밀번호가 틀렸습니다." });
   }
 
+
+  // 로그인 성공 시 세션에 사용자 정보 저장
+  req.session.user = { username }; // 박준후가 수정
+
   res.status(200).json({ message: "로그인 성공!", username });
 });
+
+// 운동 루틴 관련 라우트 사용
+const workoutRoutes = require("./workoutRoutes");
+app.use("/workouts", workoutRoutes); // 박준후가 수정
 
 // 서버 실행
 app.listen(PORT, () => {

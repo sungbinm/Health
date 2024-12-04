@@ -237,3 +237,39 @@ function updateBodyPartUI() {
   document.getElementById("frontShoulderSets").innerText = bodyPartSets.frontShoulder;
   document.getElementById("tricepsSets").innerText = bodyPartSets.triceps;
 }
+
+
+
+
+//
+
+
+// 운동 데이터를 저장할 배열
+let workoutRoutines = [];
+
+// 운동 프로그램 추가 API
+app.post("/addWorkout", (req, res) => {
+  const { username, exercise, sets, reps, weight, restTime } = req.body;
+
+  // 데이터 유효성 검사
+  if (!username || !exercise || !sets || !reps || !weight || !restTime) {
+    return res.status(400).json({ message: "모든 필드를 입력해 주세요." });
+  }
+
+  // 운동 데이터 저장
+  workoutRoutines.push({
+    username,
+    exercise,
+    sets,
+    reps,
+    weight,
+    restTime,
+  });
+
+  res.status(201).json({ message: "운동 프로그램이 저장되었습니다!" });
+});
+
+// 모든 운동 데이터 조회 API (옵션)
+app.get("/getWorkouts", (req, res) => {
+  res.status(200).json(workoutRoutines);
+});
