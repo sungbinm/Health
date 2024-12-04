@@ -3,10 +3,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const elInputUsername = document.querySelector("#username");
   const elInputPassword = document.querySelector("#password");
 
+//클릭시 동작
   loginButton.addEventListener("click", (e) => {
     e.preventDefault();
+    handleLogin();
+  });
 
-    const username = elInputUsername.value.trim();
+  loginButton.addEventListener("keydown", (e) => {
+    e.preventDefault();
+    handleLogin();
+  })
+
+function handleLogin() {
+  const username = elInputUsername.value.trim();
     const password = elInputPassword.value.trim();
 
     // 유효성 검사
@@ -35,5 +44,5 @@ document.addEventListener("DOMContentLoaded", () => {
       .catch((error) => {
         alert("로그인 실패: " + error.message);
       });
-  });
+  }
 });
