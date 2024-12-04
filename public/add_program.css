@@ -1,0 +1,63 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
+}
+
+#programFormContainer {
+  margin-top: 20px;
+}
+
+#programForm {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+}
+
+#programForm label,
+#programForm input,
+#programForm button {
+  margin-bottom: 10px;
+}
+
+#programForm input,
+#programForm button {
+  padding: 5px;
+  font-size: 16px;
+}
+
+#programForm button {
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#programForm button:hover {
+  background-color: #ffa6a6;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end; /* 버튼을 오른쪽으로 정렬 */
+  margin-top: 20px; /* 버튼과 위의 요소 사이에 여백 추가 */
+}
+
+button {
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #ffa6a6;
+}

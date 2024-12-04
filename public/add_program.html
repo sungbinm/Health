@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>add_program</title>
+    <link rel="stylesheet" href="add_program.css">
+  </head>
+  <body>
+    <div id="programFormContainer">
+      <h1>프로그램 추가하기</h1>
+      <form id="programForm">
+        <label for="day">요일:</label>
+        <select id="day" name="day" required>
+          <option value="MON">월요일</option>
+          <option value="TUE">화요일</option>
+          <option value="WED">수요일</option>
+          <option value="THU">목요일</option>
+          <option value="FRI">금요일</option>
+          <option value="SAT">토요일</option>
+          <option value="SUN">일요일</option>
+        </select>
+        <label for="exercise">운동 종류:</label>
+        <input
+          type="text"
+          id="exercise"
+          name="exercise"
+          required />
+
+        <label for="count">횟수:</label>
+        <input
+          type="text"
+          id="count"
+          name="count"
+          required />
+
+        <label for="set_count">세트수:</label>
+        <input
+          type="text"
+          id="set_count"
+          name="set_count"
+          required />
+
+        <label for="weight">무게:</label>
+        <input
+          type="text"
+          id="weight"
+          name="weight"
+          required />
+
+        <label for="time">휴식시간:</label>
+        <input
+          type="text"
+          id="time"
+          name="time"
+          required />
+        <button type="submit">입력완료</button>
+      </form>
+    </div>
+    <script src="add_program.js"></script>
+  </body>
+</html>

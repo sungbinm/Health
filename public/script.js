@@ -37,3 +37,7 @@ function goToStretching() {
 function goToTraining() {
   window.location.href = "training.html";
 }
+
+function goToAddprogram() {
+  window.location.href = "add_program.html";
+}
