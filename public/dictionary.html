@@ -19,33 +19,38 @@
         <div class="div-wrapper">
           <div class="div">
             <div class="frame-2"><div class="text-wrapper-2">용어 검색</div></div>
-            <div class="frame-3"><div class="text-wrapper-3">운동 용어를
-                검색하세요.</div></div>
+            <div class="frame-3"><div class="text-wrapper-3">운동 용어를 검색하세요.</div></div>
+            <ul id="students" style="display: none;">
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
             <div class="search-bar-wrapper">
-              <div class="search-bar" data-m3-mode="light">
                 <div class="state-layer">
                   <div class="container-wrapper">
                     <div class="container">
-                      <div class="icon-wrapper">
-                        <img class="img"
-                          src="https://c.animaapp.com/HOXx6qsn/img/icon.svg" />
-                      </div>
                     </div>
                   </div>
-                  <div class="content"><div class="supporting-text">용어를
-                      검색하세요.</div></div>
-                  <div class="trailing-elements">
-                    <div class="container-wrapper">
-                      <div class="container">
-                        <div class="icon-wrapper">
-                          <img class="img"
-                            src="https://c.animaapp.com/HOXx6qsn/img/icon-1.svg" />
+                <br />
+                <input type="text" class="search-text" />
+                <div class="icon-wrapper">
+                  <button id="btn">
+                    <img class="img" src="https://c.animaapp.com/HOXx6qsn/img/icon-1.svg" />
+                  </button>
+                </div>
+                <br />
+                <br />
+                    <div class="trailing-elements">
+                      <div class="container-wrapper">
+                        <div class="container">
                         </div>
                       </div>
-                    </div>
-                  </div>
+                  </form>          
                 </div>
               </div>
+            </div>
+            <div>
+              <span id="result"></span>
             </div>
           </div>
         </div>
@@ -70,5 +75,6 @@
         </div>
       </div>
     </div>
+    <script src="dictionary.js"></script>
   </body>
 </html>

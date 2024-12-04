@@ -148,6 +148,7 @@
   color: #000000;
   letter-spacing: 0;
   line-height: normal;
+  text-align : center;
 }
 
 .screen .frame-3 {
@@ -195,6 +196,42 @@
   background-color: #f5f5f5;
   border-radius: 28px;
   overflow: hidden;
+}
+
+.search-txt {
+  float: left;
+  padding: 0;
+  background: none;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 15px;
+  line-height: 40px;
+}
+
+.screen .input {
+  min-width: 240px;
+  padding: var(--size-space-300) var(--size-space-400) var(--size-space-300)
+    var(--size-space-400);
+  margin-bottom: -1px;
+  margin-left: -1px;
+  margin-right: -1px;
+  background-color: var(--color-background-default-default);
+  border : none;
+  outline : none;
+  overflow: hidden;
+  position: relative;
+  align-self: stretch;
+  width: 200px;
+  flex: 1;
+  margin-top: -0.5px;
+  font-family: var(--single-line-body-base-font-family);
+  font-weight: var(--single-line-body-base-font-weight);
+  color: var(--color-text-default-tertiary);
+  font-size: var(--single-line-body-base-font-size);
+  letter-spacing: var(--single-line-body-base-letter-spacing);
+  line-height: var(--single-line-body-base-line-height);
+  font-style: var(--single-line-body-base-font-style);
 }
 
 .screen .state-layer {
