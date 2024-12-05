@@ -11,10 +11,16 @@
     <div class="div-wrapper">
       <div class="frame">
         <div class="rectangle"></div>
-        <img class="HEA-lth"
-          src="https://c.animaapp.com/XV2WutwF/img/health@2x.png" />
-        <button
-          class="text-wrapper" onclick="goToLogin()">로그인</button>
+        <div class="logo-container">
+          <img class="HEA-lth"
+            src="https://c.animaapp.com/XV2WutwF/img/health@2x.png" />
+        </div>
+        <div class="user-actions">
+          <span id="usernameDisplay"></span>
+          <button
+            class="text-wrapper" id="loginButton"
+            onclick="goToLogin()">로그인</button>
+          <button id="logoutButton" onclick="logout()">로그아웃</button></div>
       </div>
       <div class="frame-wrapper">
         <div class="div">
@@ -65,4 +71,5 @@
       </div>
     </div>
   </body>
+  <script src="main.js"></script>
 </html>

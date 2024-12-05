@@ -13,6 +13,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 app.use(
+  cors({
+    origin: "http://localhost:3000", // 클라이언트 URL
+    credentials: true, // 쿠키 허용
+  })
+);
+
+app.use(
   session({
     secret: "your-secret-key",
     resave: false,
@@ -51,7 +58,9 @@ app.post("/login", (req, res) => {
     const { username, password } = req.body;
 
     if (!username || !password) {
-      throw new Error("아이디와 비밀번호가 필요합니다.");
+      return res
+        .status(400)
+        .json({ message: "아이디와 비밀번호를 입력하세요." });
     }
 
     const user = users.find(
@@ -64,11 +73,32 @@ app.post("/login", (req, res) => {
         .json({ message: "아이디 또는 비밀번호가 틀렸습니다." });
     }
 
-    req.session.user = { username }; // 세션 저장
+    req.session.user = { username }; // 세션에 사용자 정보 저장
     res.status(200).json({ message: "로그인 성공!", username });
   } catch (error) {
-    console.error("Error in /login:", error.message); // 에러 출력
-    res.status(500).json({ message: "서버 오류 발생", error: error.message });
+    console.error("로그인 에러:", error.message);
+    res.status(500).json({ message: "서버 오류 발생" });
+  }
+});
+
+// 로그아웃 API
+app.post("/logout", (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      return res.status(500).json({ message: "로그아웃 실패" });
+    }
+    res.status(200).json({ message: "로그아웃 성공" });
+  });
+});
+
+// 로그인 상태 확인 API
+app.get("/check-session", (req, res) => {
+  if (req.session.user) {
+    res
+      .status(200)
+      .json({ message: "로그인됨", username: req.session.user.username });
+  } else {
+    res.status(401).json({ message: "로그인되지 않음" });
   }
 });
 
