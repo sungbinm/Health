@@ -1,7 +1,10 @@
+window.addEventListener("DOMContentLoaded", function () {
+  window.showPrograms("MON"); // 페이지가 로드된 후에 월요일 프로그램을 보여줍니다.
+});
+
 window.showPrograms = function (day) {
   const programDisplay = document.getElementById("programDisplay");
 
-  // programDisplay가 null인지 확인
   if (!programDisplay) {
     console.error("프로그램 표시 영역을 찾을 수 없습니다.");
     return;
@@ -9,7 +12,6 @@ window.showPrograms = function (day) {
 
   programDisplay.innerHTML = ""; // 이전에 표시된 프로그램 초기화
 
-  // 서버에서 프로그램 데이터 가져오기
   fetch("/get-programs")
     .then((response) => response.json())
     .then((storedPrograms) => {
@@ -36,11 +38,6 @@ window.showPrograms = function (day) {
       } else {
         programDisplay.textContent = "프로그램이 없습니다.";
       }
-
-      const tabs = document.querySelectorAll(".tab");
-      tabs.forEach((tab) => tab.classList.remove("selected"));
-      const selectedTab = document.getElementById(day);
-      selectedTab.classList.add("selected");
     })
     .catch((error) => {
       console.error("Error fetching programs:", error);

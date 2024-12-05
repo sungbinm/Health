@@ -15,6 +15,7 @@ const path = require("path");
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const User = require("./models/User"); // User 모델 가져오기
+const Program = require("./models/Program"); // 새 모델을 import
 
 const app = express();
 const PORT = 3000;
@@ -149,7 +150,6 @@ function isLoggedIn(req, res, next) {
   }
   next();
 }
-const Program = require("./models/Program"); // 새 모델을 import
 
 // 운동 프로그램 저장 API
 app.post("/save-program", isLoggedIn, async (req, res) => {

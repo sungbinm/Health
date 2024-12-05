@@ -38,20 +38,19 @@ document.addEventListener("DOMContentLoaded", function () {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(programData),
-        credentials: "include", // 세션 쿠키 포함
+        credentials: "include",
       })
         .then((response) => response.json())
         .then((data) => {
+          console.log("서버 응답:", data);
           if (data.success) {
-            console.log("프로그램 저장 성공:", data);
-            window.location.href = "program.html"; // 성공하면 페이지 이동
+            window.location.href = "program.html"; // 성공 시 프로그램 페이지로 이동
           } else {
-            alert("프로그램 저장 실패: " + data.message); // 실패 시 오류 메시지 표시
+            alert(data.message); // 오류 메시지 표시
           }
         })
         .catch((error) => {
           console.error("프로그램 저장 실패:", error);
-          alert("저장 중 오류가 발생했습니다. 다시 시도해주세요.");
         });
     });
   } else {
