@@ -9,18 +9,29 @@ document.getElementById("programForm").addEventListener("submit", function (e) {
   const weight = document.getElementById("weight").value;
   const time = document.getElementById("time").value;
 
-  // 프로그램 데이터 저장 형식
-  const programEntry = `${exercise} / ${count} / ${setCount} / ${weight} / ${time}`;
-
-  // 로컬 스토리지에 저장
-  const storedPrograms = JSON.parse(localStorage.getItem("programs")) || {};
-  if (!storedPrograms[day]) {
-    storedPrograms[day] = [];
-  }
-  storedPrograms[day].push(programEntry);
-
-  localStorage.setItem("programs", JSON.stringify(storedPrograms));
-
-  // program.html로 이동
-  window.location.href = "program.html";
+  // 서버로 데이터 전송
+  fetch("/save-program", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ day, exercise, count, setCount, weight, time }),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("프로그램 저장 실패. 로그인 여부를 확인하세요.");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data.success) {
+        window.location.href = "program.html";
+      } else {
+        alert("프로그램 저장에 실패했습니다.");
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      alert(error.message);
+    });
 });

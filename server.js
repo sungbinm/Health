@@ -102,6 +102,75 @@ app.get("/check-session", (req, res) => {
   }
 });
 
+// 로그인 여부 확인 미들웨어
+function isLoggedIn(req, res, next) {
+  if (!req.session.user) {
+    return res
+      .status(401)
+      .json({ success: false, message: "로그인이 필요합니다." });
+  }
+  next();
+}
+
+// 세션에 프로그램 데이터 저장
+app.post("/save-program", isLoggedIn, (req, res) => {
+  const { username } = req.session.user; // 로그인한 사용자 이름
+  const { day, exercise, count, setCount, weight, time } = req.body;
+
+  if (!req.session.programs) {
+    req.session.programs = {}; // 세션 초기화
+  }
+
+  if (!req.session.programs[username]) {
+    req.session.programs[username] = {}; // 사용자별 데이터 초기화
+  }
+
+  if (!req.session.programs[username][day]) {
+    req.session.programs[username][day] = [];
+  }
+
+  const programEntry = { exercise, count, setCount, weight, time };
+  req.session.programs[username][day].push(programEntry);
+
+  res.json({ success: true, message: "Program saved successfully!" });
+});
+
+// 사용자별 프로그램 조회
+app.get("/get-programs", isLoggedIn, (req, res) => {
+  const { username } = req.session.user;
+
+  if (req.session.programs && req.session.programs[username]) {
+    res.json(req.session.programs[username]);
+  } else {
+    res.json({});
+  }
+});
+
+// 사용자별 프로그램 삭제
+app.post("/delete-program", isLoggedIn, (req, res) => {
+  const { username } = req.session.user;
+  const { day, index } = req.body;
+
+  if (
+    !req.session.programs ||
+    !req.session.programs[username] ||
+    !req.session.programs[username][day]
+  ) {
+    return res
+      .status(400)
+      .json({ success: false, message: "삭제할 데이터가 없습니다." });
+  }
+
+  req.session.programs[username][day].splice(index, 1);
+
+  // 해당 날짜에 데이터가 없으면 삭제
+  if (req.session.programs[username][day].length === 0) {
+    delete req.session.programs[username][day];
+  }
+
+  res.json({ success: true, message: "Program deleted successfully!" });
+});
+
 // 운동 루틴 관련 라우트 사용
 const workoutRoutes = require("./workoutRoutes");
 app.use("/workouts", workoutRoutes); // 박준후가 수정
