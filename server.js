@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const session = require("express-session");
 const path = require("path");
 
 const app = express();
@@ -8,7 +9,16 @@ const PORT = 3000;
 
 // 미들웨어 설정
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
+
+app.use(
+  session({
+    secret: "your-secret-key",
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 
 // 정적 파일 서빙 (public 폴더의 파일을 제공)
 app.use(express.static(path.join(__dirname, "public")));
@@ -37,24 +47,29 @@ app.post("/signup", (req, res) => {
 
 // 로그인 API
 app.post("/login", (req, res) => {
-  const { username, password } = req.body;
+  try {
+    const { username, password } = req.body;
 
-  // 사용자 인증
-  const user = users.find(
-    (user) => user.username === username && user.password === password
-  );
+    if (!username || !password) {
+      throw new Error("아이디와 비밀번호가 필요합니다.");
+    }
 
-  if (!user) {
-    return res
-      .status(401)
-      .json({ message: "아이디 또는 비밀번호가 틀렸습니다." });
+    const user = users.find(
+      (user) => user.username === username && user.password === password
+    );
+
+    if (!user) {
+      return res
+        .status(401)
+        .json({ message: "아이디 또는 비밀번호가 틀렸습니다." });
+    }
+
+    req.session.user = { username }; // 세션 저장
+    res.status(200).json({ message: "로그인 성공!", username });
+  } catch (error) {
+    console.error("Error in /login:", error.message); // 에러 출력
+    res.status(500).json({ message: "서버 오류 발생", error: error.message });
   }
-
-
-  // 로그인 성공 시 세션에 사용자 정보 저장
-  req.session.user = { username }; // 박준후가 수정
-
-  res.status(200).json({ message: "로그인 성공!", username });
 });
 
 // 운동 루틴 관련 라우트 사용

@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const elInputUsername = document.querySelector("#username");
   const elInputPassword = document.querySelector("#password");
 
-  //클릭시 동작
+  // 클릭 시 동작
   loginButton.addEventListener("click", (e) => {
     e.preventDefault();
     handleLogin();
@@ -34,8 +34,16 @@ document.addEventListener("DOMContentLoaded", () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ username, password }),
+      credentials: "include", // 세션 쿠키 포함
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          return response.json().then((data) => {
+            throw new Error(data.message || "로그인 실패");
+          });
+        }
+        return response.json();
+      })
       .then((data) => {
         if (data.message === "로그인 성공!") {
           alert("로그인 성공!");
