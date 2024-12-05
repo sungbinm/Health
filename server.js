@@ -1,12 +1,3 @@
-function isLoggedIn(req, res, next) {
-  if (!req.session.user) {
-    return res
-      .status(401)
-      .json({ success: false, message: "로그인이 필요합니다." });
-  }
-  next();
-}
-
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -19,6 +10,14 @@ const Program = require("./models/Program"); // 새 모델을 import
 
 const app = express();
 const PORT = 3000;
+function isLoggedIn(req, res, next) {
+  if (!req.session.user) {
+    return res
+      .status(401)
+      .json({ success: false, message: "로그인이 필요합니다." });
+  }
+  next();
+}
 
 // MongoDB URI (로컬에서 실행하는 경우 'mongodb://localhost:27017/health')
 const mongoURI = "mongodb://localhost:27017/health";
@@ -39,7 +38,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 app.use(
   cors({
-    origin: "http://localhost:3000", // 클라이언트 주소
+    origin: "http://localhost:5000", // 클라이언트 주소
     credentials: true, // 쿠키 포함
   })
 );

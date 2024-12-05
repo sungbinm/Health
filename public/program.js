@@ -57,13 +57,13 @@ window.showPrograms = function (day) {
     });
 };
 
-function deleteProgram(day, id) {
+function deleteProgram(day, programId) {
   fetch(`/delete-program`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ day, id }),
+    body: JSON.stringify({ programId }), // day를 보낼 필요 없으므로 삭제
   })
     .then((response) => response.json())
     .then((data) => {
