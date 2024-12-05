@@ -1,21 +1,45 @@
+function isLoggedIn(req, res, next) {
+  if (!req.session.user) {
+    return res
+      .status(401)
+      .json({ success: false, message: "로그인이 필요합니다." });
+  }
+  next();
+}
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const session = require("express-session");
 const path = require("path");
+const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
+const User = require("./models/User"); // User 모델 가져오기
 
 const app = express();
 const PORT = 3000;
+
+// MongoDB URI (로컬에서 실행하는 경우 'mongodb://localhost:27017/health')
+const mongoURI = "mongodb://localhost:27017/health";
+
+// MongoDB 연결
+mongoose
+  .connect(mongoURI)
+  .then(() => {
+    console.log("MongoDB 연결 성공!");
+  })
+  .catch((err) => {
+    console.error("MongoDB 연결 실패", err);
+  });
 
 // 미들웨어 설정
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
-
 app.use(
   cors({
-    origin: "http://localhost:3000", // 클라이언트 URL
-    credentials: true, // 쿠키 허용
+    origin: "http://localhost:3000", // 클라이언트 주소
+    credentials: true, // 쿠키 포함
   })
 );
 
@@ -24,6 +48,10 @@ app.use(
     secret: "your-secret-key",
     resave: false,
     saveUninitialized: true,
+    cookie: {
+      secure: false, // 로컬에서는 false (production에서는 true로 변경)
+      httpOnly: true,
+    },
   })
 );
 
@@ -35,37 +63,38 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "main.html"));
 });
 
-// 임시 사용자 데이터베이스
-let users = [];
-
 // 회원가입 API
-app.post("/signup", (req, res) => {
+app.post("/signup", async (req, res) => {
   const { username, password } = req.body;
 
-  // 중복 확인
-  if (users.find((user) => user.username === username)) {
-    return res.status(400).json({ message: "이미 사용 중인 아이디입니다." });
-  }
+  try {
+    // 중복 확인
+    const existingUser = await User.findOne({ username });
+    if (existingUser) {
+      return res.status(400).json({ message: "이미 사용 중인 아이디입니다." });
+    }
 
-  // 사용자 등록
-  users.push({ username, password });
-  res.status(201).json({ message: "회원가입 성공!" });
+    // 비밀번호 암호화
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    // 사용자 저장
+    const newUser = new User({ username, password: hashedPassword });
+    await newUser.save();
+
+    res.status(201).json({ message: "회원가입 성공!" });
+  } catch (error) {
+    console.error("회원가입 오류", error);
+    res.status(500).json({ message: "회원가입 실패" });
+  }
 });
 
 // 로그인 API
-app.post("/login", (req, res) => {
+app.post("/login", async (req, res) => {
+  const { username, password } = req.body;
+
   try {
-    const { username, password } = req.body;
-
-    if (!username || !password) {
-      return res
-        .status(400)
-        .json({ message: "아이디와 비밀번호를 입력하세요." });
-    }
-
-    const user = users.find(
-      (user) => user.username === username && user.password === password
-    );
+    const user = await User.findOne({ username });
 
     if (!user) {
       return res
@@ -73,10 +102,19 @@ app.post("/login", (req, res) => {
         .json({ message: "아이디 또는 비밀번호가 틀렸습니다." });
     }
 
-    req.session.user = { username }; // 세션에 사용자 정보 저장
+    // 비밀번호 비교
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (!isMatch) {
+      return res
+        .status(401)
+        .json({ message: "아이디 또는 비밀번호가 틀렸습니다." });
+    }
+
+    req.session.user = user; // 세션에 사용자 정보 저장 (username 외에도 모든 사용자 정보 저장 가능)
     res.status(200).json({ message: "로그인 성공!", username });
   } catch (error) {
-    console.error("로그인 에러:", error.message);
+    console.error("로그인 오류", error);
     res.status(500).json({ message: "서버 오류 발생" });
   }
 });
@@ -111,69 +149,71 @@ function isLoggedIn(req, res, next) {
   }
   next();
 }
+const Program = require("./models/Program"); // 새 모델을 import
 
-// 세션에 프로그램 데이터 저장
-app.post("/save-program", isLoggedIn, (req, res) => {
-  const { username } = req.session.user; // 로그인한 사용자 이름
+// 운동 프로그램 저장 API
+app.post("/save-program", isLoggedIn, async (req, res) => {
+  const { username } = req.session.user;
   const { day, exercise, count, setCount, weight, time } = req.body;
 
-  if (!req.session.programs) {
-    req.session.programs = {}; // 세션 초기화
+  console.log("받은 데이터:", req.body); // 클라이언트에서 전달한 데이터 확인
+
+  try {
+    const newProgram = new Program({
+      username,
+      day,
+      exercise,
+      count,
+      setCount,
+      weight,
+      time,
+    });
+
+    await newProgram.save();
+
+    console.log("프로그램 저장됨:", newProgram); // 서버 로그에 저장된 프로그램 확인
+    res.json({ success: true, message: "Program saved successfully!" });
+  } catch (error) {
+    console.error("운동 프로그램 저장 오류", error); // 오류 로그 출력
+    res
+      .status(500)
+      .json({ message: "운동 프로그램 저장 실패", error: error.message });
   }
-
-  if (!req.session.programs[username]) {
-    req.session.programs[username] = {}; // 사용자별 데이터 초기화
-  }
-
-  if (!req.session.programs[username][day]) {
-    req.session.programs[username][day] = [];
-  }
-
-  const programEntry = { exercise, count, setCount, weight, time };
-  req.session.programs[username][day].push(programEntry);
-
-  res.json({ success: true, message: "Program saved successfully!" });
 });
 
-// 사용자별 프로그램 조회
-app.get("/get-programs", isLoggedIn, (req, res) => {
+// 운동 프로그램 조회 API
+app.get("/get-programs", isLoggedIn, async (req, res) => {
   const { username } = req.session.user;
 
-  if (req.session.programs && req.session.programs[username]) {
-    res.json(req.session.programs[username]);
-  } else {
-    res.json({});
+  try {
+    // 사용자별 프로그램 데이터 조회
+    const programs = await Program.find({ username });
+
+    res.json(programs); // 프로그램 데이터 반환
+  } catch (error) {
+    console.error("프로그램 조회 오류", error);
+    res.status(500).json({ message: "프로그램 조회 실패" });
   }
 });
 
-// 사용자별 프로그램 삭제
-app.post("/delete-program", isLoggedIn, (req, res) => {
+// 운동 프로그램 삭제 API
+app.post("/delete-program", isLoggedIn, async (req, res) => {
   const { username } = req.session.user;
   const { day, index } = req.body;
 
-  if (
-    !req.session.programs ||
-    !req.session.programs[username] ||
-    !req.session.programs[username][day]
-  ) {
-    return res
-      .status(400)
-      .json({ success: false, message: "삭제할 데이터가 없습니다." });
+  try {
+    await Program.deleteOne({ username, day, _id: index }); // MongoDB에서 삭제
+
+    res.json({ success: true, message: "Program deleted successfully!" });
+  } catch (error) {
+    console.error("프로그램 삭제 오류", error);
+    res.status(500).json({ message: "프로그램 삭제 실패" });
   }
-
-  req.session.programs[username][day].splice(index, 1);
-
-  // 해당 날짜에 데이터가 없으면 삭제
-  if (req.session.programs[username][day].length === 0) {
-    delete req.session.programs[username][day];
-  }
-
-  res.json({ success: true, message: "Program deleted successfully!" });
 });
 
 // 운동 루틴 관련 라우트 사용
 const workoutRoutes = require("./workoutRoutes");
-app.use("/workouts", workoutRoutes); // 박준후가 수정
+app.use("/workouts", workoutRoutes);
 
 // 서버 실행
 app.listen(PORT, () => {
