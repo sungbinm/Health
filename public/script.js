@@ -105,3 +105,24 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   });
 });
+
+
+
+function updateRecommendedWeeks() {
+  const recoverySelect = document.getElementById("recoverySelect");
+  const selectedValue = recoverySelect.value;
+  const recommendedWeeks = document.getElementById("recommendedWeeks");
+
+  let weeks = 4; // 기본 값은 4주 (최하)
+  if (selectedValue === "LOW") {
+    weeks = 5;
+  } else if (selectedValue === "MEDIUM") {
+    weeks = 6;
+  } else if (selectedValue === "HIGH") {
+    weeks = 7;
+  } else if (selectedValue === "HIGHEST") {
+    weeks = 8;
+  }
+
+  recommendedWeeks.textContent = `(추천 : ${weeks}주)`; // 선택된 값에 따라 텍스트 업데이트
+}
