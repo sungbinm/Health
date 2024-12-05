@@ -10,10 +10,21 @@
 
 .screen .frame {
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  flex: 1;
+  align-self: stretch;
+  width: 100%;
+  flex-grow: 1;
+}
+
+.frame .div1 {
+  display: flex;
   max-height: 76px;
   height: 76px;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between; /* 로고와 버튼을 양쪽에 배치 */
   gap: 50px;
   padding: 10px 20px;
   position: relative;
@@ -32,37 +43,33 @@
   background-color: #ffffff;
 }
 
-.screen .HEA-lth {
+.HEA-lth {
   position: relative;
   flex: 0 0 auto;
+  margin-left: -80px; /* 로고 왼쪽으로 밀기 */
 }
 
-.screen .button {
+.logo-container {
+  flex-grow: 1; /* 로고가 중앙에 오게 함 */
+  display: flex;
+  justify-content: center;
+}
+
+.user-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: absolute; /* 오른쪽에 고정 */
+  right: 20px;
+}
+
+.text-wrapper {
   all: unset;
   box-sizing: border-box;
   display: flex;
-  width: 52px;
-  height: 30px;
   align-items: center;
   justify-content: center;
-  gap: var(--size-space-200);
-  padding: var(--size-space-300);
-  position: relative;
-  background-color: var(--color-background-brand-default);
-  border-radius: var(--size-radius-200);
-  border: 1px solid;
-  border-color: var(--color-border-brand-default);
-}
-
-.screen .text-wrapper {
-  all: unset;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 52px;
-  height: 30px;
-  padding: var(--size-space-300);
+  padding: 8px 16px; /* 충분한 여백을 줘서 텍스트가 잘리지 않도록 */
   cursor: pointer;
   background-color: black;
   border: 1px solid var(--color-border-brand-default);
@@ -70,13 +77,28 @@
   font-family: var(--single-line-body-base-font-family);
   font-weight: var(--single-line-body-base-font-weight);
   color: var(--color-text-brand-on-brand);
-  font-size: var(--single-line-body-base-font-size);
+  font-size: 14px; /* 폰트 크기 조정 */
   letter-spacing: var(--single-line-body-base-letter-spacing);
   line-height: var(--single-line-body-base-line-height);
-  white-space: nowrap;
-  font-style: var(--single-line-body-base-font-style);
+  white-space: nowrap; /* 텍스트가 줄바꿈 없이 한 줄로 표시 */
+  overflow: hidden;
+  text-overflow: ellipsis; /* 텍스트가 너무 길 경우 ...으로 표시 */
 }
 
+.text-wrapper:hover {
+  background-color: gray;
+}
+
+/* 로그인 시 로고와 버튼의 위치 조정 */
+#loginButton,
+#logoutButton {
+  display: none;
+}
+
+#logoutButton.show,
+#usernameDisplay.show {
+  display: block;
+}
 .screen .frame-wrapper {
   display: flex;
   min-height: 690px;
@@ -148,7 +170,7 @@
   color: #000000;
   letter-spacing: 0;
   line-height: normal;
-  text-align : center;
+  text-align: center;
 }
 
 .screen .frame-3 {
@@ -217,8 +239,8 @@
   margin-left: -1px;
   margin-right: -1px;
   background-color: var(--color-background-default-default);
-  border : none;
-  outline : none;
+  border: none;
+  outline: none;
   overflow: hidden;
   position: relative;
   align-self: stretch;
