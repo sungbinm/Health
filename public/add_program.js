@@ -1,14 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // 폼 요소 가져오기
   const programForm = document.getElementById("programForm");
 
-  // 폼이 존재하는지 확인
   if (programForm) {
-    // 폼에 submit 이벤트 리스너 추가
     programForm.addEventListener("submit", function (e) {
       e.preventDefault(); // 폼 제출 방지
 
-      // 프로그램 데이터 가져오기
       const programData = {
         day: document.getElementById("day").value,
         exercise: document.getElementById("exercise").value,
@@ -31,20 +27,19 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
-      // 서버에 데이터 전송
       fetch("http://localhost:3000/save-program", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(programData),
-        credentials: "include",
+        credentials: "include", // 쿠키 포함
       })
         .then((response) => response.json())
         .then((data) => {
           console.log("서버 응답:", data);
           if (data.success) {
-            window.location.href = "program.html"; // 성공 시 프로그램 페이지로 이동
+            window.location.href = "program.html"; // 페이지 이동 후 자동 갱신
           } else {
             alert(data.message); // 오류 메시지 표시
           }

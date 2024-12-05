@@ -1,5 +1,6 @@
 window.addEventListener("DOMContentLoaded", function () {
-  window.showPrograms("MON"); // 페이지가 로드된 후에 월요일 프로그램을 보여줍니다.
+  // 처음에 월요일 프로그램을 보여줍니다.
+  window.showPrograms("MON");
 });
 
 window.showPrograms = function (day) {
@@ -12,11 +13,22 @@ window.showPrograms = function (day) {
 
   programDisplay.innerHTML = ""; // 이전에 표시된 프로그램 초기화
 
-  fetch("/get-programs")
+  fetch("/get-programs", {
+    method: "GET",
+    credentials: "include", // 세션 쿠키를 포함하여 요청
+  })
     .then((response) => response.json())
     .then((storedPrograms) => {
-      if (storedPrograms[day] && storedPrograms[day].length > 0) {
-        storedPrograms[day].forEach((entry, index) => {
+      console.log("받은 프로그램:", storedPrograms); // 응답 확인
+
+      if (
+        storedPrograms &&
+        storedPrograms[day] &&
+        storedPrograms[day].length > 0
+      ) {
+        const dayPrograms = storedPrograms[day];
+
+        dayPrograms.forEach((entry) => {
           const programItem = document.createElement("div");
           programItem.className = "program-item";
 
@@ -27,7 +39,7 @@ window.showPrograms = function (day) {
           deleteButton.textContent = "삭제";
           deleteButton.className = "delete-button";
           deleteButton.onclick = function () {
-            deleteProgram(day, index);
+            deleteProgram(day, entry._id);
           };
 
           programItem.appendChild(programText);
@@ -36,35 +48,33 @@ window.showPrograms = function (day) {
           programDisplay.appendChild(programItem);
         });
       } else {
-        programDisplay.textContent = "프로그램이 없습니다.";
+        programDisplay.textContent = "해당 요일에 프로그램이 없습니다.";
       }
     })
     .catch((error) => {
-      console.error("Error fetching programs:", error);
+      console.error("프로그램 로드 중 오류 발생:", error);
       programDisplay.textContent = "프로그램 로드 중 오류 발생.";
     });
 };
 
-function deleteProgram(day, index) {
-  // 서버에 삭제 요청
+function deleteProgram(day, id) {
   fetch(`/delete-program`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ day, index }),
+    body: JSON.stringify({ day, id }),
   })
     .then((response) => response.json())
     .then((data) => {
       if (data.success) {
-        // 삭제 성공 후 화면 갱신
-        showPrograms(day);
+        showPrograms(day); // 프로그램 삭제 후 해당 요일의 프로그램을 다시 로드
       } else {
-        alert("프로그램 삭제에 실패했습니다.");
+        alert("프로그램 삭제 실패");
       }
     })
     .catch((error) => {
-      console.error("Error deleting program:", error);
+      console.error("프로그램 삭제 중 오류 발생:", error);
       alert("삭제 중 오류 발생.");
     });
 }

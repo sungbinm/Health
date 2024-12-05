@@ -130,14 +130,11 @@ app.post("/logout", (req, res) => {
   });
 });
 
-// 로그인 상태 확인 API
 app.get("/check-session", (req, res) => {
   if (req.session.user) {
-    res
-      .status(200)
-      .json({ message: "로그인됨", username: req.session.user.username });
+    return res.status(200).json({ username: req.session.user.username });
   } else {
-    res.status(401).json({ message: "로그인되지 않음" });
+    return res.status(401).json({ message: "로그인되지 않음" });
   }
 });
 
@@ -156,7 +153,7 @@ app.post("/save-program", isLoggedIn, async (req, res) => {
   const { username } = req.session.user;
   const { day, exercise, count, setCount, weight, time } = req.body;
 
-  console.log("받은 데이터:", req.body); // 클라이언트에서 전달한 데이터 확인
+  console.log("받은 데이터:", req.body);
 
   try {
     const newProgram = new Program({
@@ -171,10 +168,14 @@ app.post("/save-program", isLoggedIn, async (req, res) => {
 
     await newProgram.save();
 
-    console.log("프로그램 저장됨:", newProgram); // 서버 로그에 저장된 프로그램 확인
-    res.json({ success: true, message: "Program saved successfully!" });
+    console.log("프로그램 저장됨:", newProgram);
+    res.json({
+      success: true,
+      message: "Program saved successfully!",
+      program: newProgram, // 저장된 프로그램 정보를 응답에 포함
+    });
   } catch (error) {
-    console.error("운동 프로그램 저장 오류", error); // 오류 로그 출력
+    console.error("운동 프로그램 저장 오류", error);
     res
       .status(500)
       .json({ message: "운동 프로그램 저장 실패", error: error.message });
@@ -186,10 +187,18 @@ app.get("/get-programs", isLoggedIn, async (req, res) => {
   const { username } = req.session.user;
 
   try {
-    // 사용자별 프로그램 데이터 조회
     const programs = await Program.find({ username });
 
-    res.json(programs); // 프로그램 데이터 반환
+    // 요일별로 프로그램 데이터를 그룹화
+    const groupedPrograms = programs.reduce((acc, program) => {
+      if (!acc[program.day]) {
+        acc[program.day] = [];
+      }
+      acc[program.day].push(program);
+      return acc;
+    }, {});
+
+    res.json(groupedPrograms); // 요일별로 프로그램을 반환
   } catch (error) {
     console.error("프로그램 조회 오류", error);
     res.status(500).json({ message: "프로그램 조회 실패" });
@@ -199,10 +208,19 @@ app.get("/get-programs", isLoggedIn, async (req, res) => {
 // 운동 프로그램 삭제 API
 app.post("/delete-program", isLoggedIn, async (req, res) => {
   const { username } = req.session.user;
-  const { day, index } = req.body;
+  const { programId } = req.body; // programId로 삭제할 프로그램을 지정
 
   try {
-    await Program.deleteOne({ username, day, _id: index }); // MongoDB에서 삭제
+    const deletedProgram = await Program.findOneAndDelete({
+      username,
+      _id: programId, // _id로 프로그램 삭제
+    });
+
+    if (!deletedProgram) {
+      return res
+        .status(404)
+        .json({ message: "해당 프로그램을 찾을 수 없습니다." });
+    }
 
     res.json({ success: true, message: "Program deleted successfully!" });
   } catch (error) {
