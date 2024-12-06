@@ -42,6 +42,30 @@ function goToAddprogram() {
   window.location.href = "add_program.html";
 }
 
+function goToChest() {
+  window.location.href = "exercise.html";
+}
+
+function goToBack() {
+  window.location.href = "add_program.html";
+}
+
+function goToShoulder() {
+  window.location.href = "add_program.html";
+}
+
+function goToArm() {
+  window.location.href = "add_program.html";
+}
+
+function goToAbs() {
+  window.location.href = "add_program.html";
+}
+
+function goToLowerbody() {
+  window.location.href = "add_program.html";
+}
+
 function logout() {
   fetch("http://localhost:3000/logout", {
     method: "POST",

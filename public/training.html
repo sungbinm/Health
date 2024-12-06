@@ -53,20 +53,14 @@
               <button
                 class="button-2">저장</button>
               <button
-                class="button-4">START</button>
+                class="button-4" onclick="startTimer()">START</button>
             </div>
             <div class="frame-6">
-              <div class="frame-7">
-                <div class="text-wrapper-3">
-                  운동 시간&nbsp;&nbsp;
-                  |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
-                </div>
-              </div>
               <div class="frame-8">
+                <label><input type="text" id="startSec" style="width: 60px;" />초</label>
                 <div class="text-wrapper-3">
-                  휴식 시간&nbsp;&nbsp;
-                  |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
-                </div>
+                  <div id="display" class="remaining"></div>
+                  </div>
               </div>
             </div>
           </div>
@@ -92,6 +86,8 @@
         </div>
       </div>
     </div>
+    <script src="timer.js"></script>
+    <script src="program.js"></script>
   </body>
   <script src="training.js"></script>
 </html>
