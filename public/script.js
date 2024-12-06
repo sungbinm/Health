@@ -1,73 +1,30 @@
-function goToLogin() {
-  window.location.href = "login.html";
-}
+const API_URL = "https://health-feo8.onrender.com";
 
-function goToHome() {
-  window.location.href = "main.html";
-}
+const pages = {
+  goToLogin: "login.html",
+  goToHome: "main.html",
+  goToSignup: "signup.html",
+  goToWorkoutexplanation: "workout_explanation.html",
+  goToDeloading: "volume_deloading.html",
+  goToProgram: "program.html",
+  goToDictionary: "dictionary.html",
+  goToStretching: "stretching.html",
+  goToTraining: "training.html",
+  goToAddprogram: "add_program.html",
+  goToChest: "exercise.html",
+  goToBack: "add_program.html",
+  goToShoulder: "add_program.html",
+  goToArm: "add_program.html",
+  goToAbs: "add_program.html",
+  goToLowerbody: "add_program.html",
+};
 
-function goToSignup() {
-  window.location.href = "signup.html";
-}
-
-function goToWorkoutexplanation() {
-  window.location.href = "workout_explanation.html";
-}
-
-function goBack() {
-  history.back();
-}
-
-function goToDeloading() {
-  window.location.href = "volume_deloading.html";
-}
-
-function goToProgram() {
-  window.location.href = "program.html";
-}
-
-function goToDictionary() {
-  window.location.href = "dictionary.html";
-}
-
-function goToStretching() {
-  window.location.href = "stretching.html";
-}
-
-function goToTraining() {
-  window.location.href = "training.html";
-}
-
-function goToAddprogram() {
-  window.location.href = "add_program.html";
-}
-
-function goToChest() {
-  window.location.href = "exercise.html";
-}
-
-function goToBack() {
-  window.location.href = "add_program.html";
-}
-
-function goToShoulder() {
-  window.location.href = "add_program.html";
-}
-
-function goToArm() {
-  window.location.href = "add_program.html";
-}
-
-function goToAbs() {
-  window.location.href = "add_program.html";
-}
-
-function goToLowerbody() {
-  window.location.href = "add_program.html";
+function goToPage(page) {
+  window.location.href = pages[page];
 }
 
 function logout() {
-  fetch("http://localhost:3000/logout", {
+  fetch(`${API_URL}/logout`, {
     method: "POST",
     credentials: "include",
   })
@@ -89,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const logoutButton = document.getElementById("logoutButton");
 
   // 세션 상태 확인
-  fetch("/check-session", { credentials: "include" })
+  fetch(`${API_URL}/checksession`, { credentials: "include" })
     .then((response) => {
       if (!response.ok) {
         throw new Error("로그인되지 않음");
@@ -112,7 +69,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 로그아웃 동작
   logoutButton.addEventListener("click", () => {
-    fetch("/logout", {
+    fetch(`${API_URL}/logout`, {
+      // API_URL을 사용하도록 수정
       method: "POST",
       credentials: "include",
     })
@@ -129,8 +87,6 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   });
 });
-
-
 
 function updateRecommendedWeeks() {
   const recoverySelect = document.getElementById("recoverySelect");

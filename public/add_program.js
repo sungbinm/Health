@@ -1,3 +1,5 @@
+const API_URL = "https://health-feo8.onrender.com";
+
 document.addEventListener("DOMContentLoaded", function () {
   const programForm = document.getElementById("programForm");
 
@@ -27,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
-      fetch("http://localhost:3000/save-program", {
+      fetch("https://health-feo8.onrender.com/save-program", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

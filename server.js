@@ -1,3 +1,4 @@
+require("dotenv").config(); // .env 파일을 로드합니다.
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -9,7 +10,6 @@ const User = require("./models/User"); // User 모델 가져오기
 const Program = require("./models/Program"); // 새 모델을 import
 
 const app = express();
-const PORT = 3000;
 function isLoggedIn(req, res, next) {
   if (!req.session.user) {
     return res
@@ -18,28 +18,30 @@ function isLoggedIn(req, res, next) {
   }
   next();
 }
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Credentials", "true");
+  next();
+});
 
-// MongoDB URI (로컬에서 실행하는 경우 'mongodb://localhost:27017/health')
-const mongoURI = "mongodb://localhost:27017/health";
+mongoose.set("debug", true);
 
-// MongoDB 연결
+const mongoURI =
+  "mongodb+srv://tngussla:cofflswj2@cluster0.6das9.mongodb.net/health?retryWrites=true&w=majority&appName=Cluster0no";
+const PORT = process.env.PORT || 3000;
 mongoose
-  .connect(mongoURI)
-  .then(() => {
-    console.log("MongoDB 연결 성공!");
-  })
+  .connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log("MongoDB 연결 성공!"))
   .catch((err) => {
-    console.error("MongoDB 연결 실패", err);
+    console.error("MongoDB 연결 실패:", err.message);
+    console.error("오류 세부사항:", err);
   });
-
 // 미들웨어 설정
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors());
 app.use(
   cors({
-    origin: "http://localhost:5000", // 클라이언트 주소
-    credentials: true, // 쿠키 포함
+    origin: "https://health-feo8.onrender.com",
+    credentials: true,
   })
 );
 
@@ -49,8 +51,9 @@ app.use(
     resave: false,
     saveUninitialized: true,
     cookie: {
-      secure: false, // 로컬에서는 false (production에서는 true로 변경)
-      httpOnly: true,
+      secure: process.env.NODE_ENV === "production", // HTTPS 환경에서는 true
+      httpOnly: true, // 클라이언트에서 접근하지 못하게
+      maxAge: 24 * 60 * 60 * 1000, // 세션 만료 시간 (24시간)
     },
   })
 );
@@ -136,16 +139,6 @@ app.get("/check-session", (req, res) => {
     return res.status(401).json({ message: "로그인되지 않음" });
   }
 });
-
-// 로그인 여부 확인 미들웨어
-function isLoggedIn(req, res, next) {
-  if (!req.session.user) {
-    return res
-      .status(401)
-      .json({ success: false, message: "로그인이 필요합니다." });
-  }
-  next();
-}
 
 // 운동 프로그램 저장 API
 app.post("/save-program", isLoggedIn, async (req, res) => {

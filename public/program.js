@@ -13,20 +13,12 @@ window.showPrograms = function (day) {
 
   programDisplay.innerHTML = ""; // 이전에 표시된 프로그램 초기화
 
-<<<<<<< Updated upstream
+  console.log("Fetching programs...");
+  // 서버에서 프로그램 데이터 가져오기
   fetch("/get-programs", {
     method: "GET",
     credentials: "include", // 세션 쿠키를 포함하여 요청
   })
-=======
-<<<<<<< Updated upstream
-=======
-
-  console.log("Fetching programs...");
-  // 서버에서 프로그램 데이터 가져오기
->>>>>>> Stashed changes
-  fetch("/get-programs")
->>>>>>> Stashed changes
     .then((response) => response.json())
     .then((storedPrograms) => {
       console.log("받은 프로그램:", storedPrograms); // 응답 확인

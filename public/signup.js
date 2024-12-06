@@ -1,5 +1,7 @@
 //회원가입
 
+const API_URL = "https://health-feo8.onrender.com";
+
 //아이디 정보
 // 1. 아이디 입력창 정보 가져오기
 let elInputUsername = document.querySelector("#username"); // input#username
@@ -160,7 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // 서버로 회원가입 요청 보내기
-    fetch("http://localhost:3000/signup", {
+    fetch("https://health-feo8.onrender.com/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
