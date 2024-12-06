@@ -14,7 +14,7 @@ function countTimer() {
         totalSeconds--;
         const seconds = totalSeconds;
         document.querySelector("#display").innerText =
-            seconds;
+            "휴식시간 : " + seconds + " 초";
     } else {
         clearTimer(timer, "타이머 종료");
     }
