@@ -29,18 +29,25 @@
             <div class="div-wrapper"><div class="text-wrapper-2">훈련</div></div>
             <div class="frame-3">
               <div class="tabs">
-                <div class="tab"><div class="label">MON</div></div>
-                <div class="label-wrapper"><div class="label-2">TUE</div></div>
-                <div class="label-wrapper"><div class="label-2">WED</div></div>
-                <div class="label-wrapper"><div class="label-2">THU</div></div>
-                <div class="label-wrapper"><div class="label-2">FRI</div></div>
-                <div class="label-wrapper"><div class="label-2">SAT</div></div>
+                <div class="tab" id="MON" onclick="showPrograms('MON')"><div
+                    class="label">월요일</div></div>
+                <div class="tab" id="TUE" onclick="showPrograms('TUE')"><div
+                    class="label">화요일</div></div>
+                <div class="tab" id="WED" onclick="showPrograms('WED')"><div
+                    class="label">수요일</div></div>
+                <div class="tab" id="THU" onclick="showPrograms('THU')"><div
+                    class="label">목요일</div></div>
+                <div class="tab" id="FRI" onclick="showPrograms('FRI')"><div
+                    class="label">금요일</div></div>
+                <div class="tab" id="SAT" onclick="showPrograms('SAT')"><div
+                    class="label">토요일</div></div>
+                <div class="tab" id="SUN" onclick="showPrograms('SUN')"><div
+                    class="label">일요일</div></div>
               </div>
-              <div class="label-wrapper"><div class="label-2">SUN</div></div>
             </div>
             <div class="frame-4">
               <p class="p">운동 종류 / 횟수 / 세트수 / 무게 / 휴식시간</p>
-              <div class="rectangle-2"></div>
+              <div id="programDisplay" class="rectangle-2"></div>
             </div>
             <div class="frame-5">
               <button
@@ -86,4 +93,5 @@
       </div>
     </div>
   </body>
+  <script src="training.js"></script>
 </html>
