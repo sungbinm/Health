@@ -1,7 +1,23 @@
 window.addEventListener("DOMContentLoaded", function () {
-  // 처음에 월요일 프로그램을 보여줍니다.
-  window.showPrograms("MON");
+  // 처음에 "요일을 선택해주세요" 메시지를 표시
+  const programDisplay = document.getElementById("programDisplay");
+  if (programDisplay) {
+    programDisplay.textContent = "요일을 선택해주세요";
+  }
+
+
+  const tabs = document.querySelectorAll(".tab");
+  tabs.forEach(tab => {
+    tab.addEventListener("click", function() {
+      // 클릭한 탭에 selected 클래스 추가
+      tabs.forEach(tab => tab.classList.remove("selected"));
+      this.classList.add("selected");
+    });
+  });
+
 });
+
+
 
 window.showPrograms = function (day) {
   const programDisplay = document.getElementById("programDisplay");
@@ -11,7 +27,8 @@ window.showPrograms = function (day) {
     return;
   }
 
-  programDisplay.innerHTML = ""; // 이전에 표시된 프로그램 초기화
+  // 프로그램을 새로 불러오기 전에, innerHTML을 초기화하여 이전 프로그램을 지웁니다.
+  programDisplay.innerHTML = ""; 
 
   fetch("/get-programs", {
     method: "GET",
