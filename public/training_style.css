@@ -539,3 +539,8 @@
   font-weight: bold;
   border-color: #6c757d;
 }
+
+/* 완료된 프로그램 항목에 색상 추가 */
+.program-item.completed {
+  background-color: #b3ffb3; /* 연한 초록색 배경 */
+}
