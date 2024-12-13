@@ -1,5 +1,3 @@
-const API_URL = "https://health-feo8.onrender.com";
-
 document.addEventListener("DOMContentLoaded", () => {
   const loginButton = document.querySelector(".text-wrapper");
   const elInputUsername = document.querySelector("#username");
@@ -30,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // 서버로 로그인 요청 보내기
-    fetch(`${API_URL}/login`, {
+    fetch("http://localhost:3000/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

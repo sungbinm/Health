@@ -184,7 +184,7 @@
     width: 100%;
     height: 123px;
     background-color: #dbdbdb;
-    border-radius: 03px;
+    border-radius: 10px;
   }
   
   .screen .frame-8 {
@@ -331,6 +331,4 @@
   .frame-13 {
     cursor: pointer;
   }
-
-  
   

@@ -1,30 +1,49 @@
-const API_URL = "https://health-feo8.onrender.com";
+function goToLogin() {
+  window.location.href = "login.html";
+}
 
-const pages = {
-  goToLogin: "login.html",
-  goToHome: "main.html",
-  goToSignup: "signup.html",
-  goToWorkoutexplanation: "workout_explanation.html",
-  goToDeloading: "volume_deloading.html",
-  goToProgram: "program.html",
-  goToDictionary: "dictionary.html",
-  goToStretching: "stretching.html",
-  goToTraining: "training.html",
-  goToAddprogram: "add_program.html",
-  goToChest: "exercise.html",
-  goToBack: "add_program.html",
-  goToShoulder: "add_program.html",
-  goToArm: "add_program.html",
-  goToAbs: "add_program.html",
-  goToLowerbody: "add_program.html",
-};
+function goToHome() {
+  window.location.href = "main.html";
+}
 
-function goToPage(page) {
-  window.location.href = pages[page];
+function goToSignup() {
+  window.location.href = "signup.html";
+}
+
+function goToWorkoutexplanation() {
+  window.location.href = "workout_explanation.html";
+}
+
+function goBack() {
+  history.back();
+}
+
+function goToDeloading() {
+  window.location.href = "volume_deloading.html";
+}
+
+function goToProgram() {
+  window.location.href = "program.html";
+}
+
+function goToDictionary() {
+  window.location.href = "dictionary.html";
+}
+
+function goToStretching() {
+  window.location.href = "stretching.html";
+}
+
+function goToTraining() {
+  window.location.href = "training.html";
+}
+
+function goToAddprogram() {
+  window.location.href = "add_program.html";
 }
 
 function logout() {
-  fetch(`${API_URL}/logout`, {
+  fetch("http://localhost:3000/logout", {
     method: "POST",
     credentials: "include",
   })
@@ -46,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const logoutButton = document.getElementById("logoutButton");
 
   // 세션 상태 확인
-  fetch(`${API_URL}/checksession`, { credentials: "include" })
+  fetch("/check-session", { credentials: "include" })
     .then((response) => {
       if (!response.ok) {
         throw new Error("로그인되지 않음");
@@ -69,8 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 로그아웃 동작
   logoutButton.addEventListener("click", () => {
-    fetch(`${API_URL}/logout`, {
-      // API_URL을 사용하도록 수정
+    fetch("/logout", {
       method: "POST",
       credentials: "include",
     })
@@ -87,22 +105,3 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   });
 });
-
-function updateRecommendedWeeks() {
-  const recoverySelect = document.getElementById("recoverySelect");
-  const selectedValue = recoverySelect.value;
-  const recommendedWeeks = document.getElementById("recommendedWeeks");
-
-  let weeks = 4; // 기본 값은 4주 (최하)
-  if (selectedValue === "LOW") {
-    weeks = 5;
-  } else if (selectedValue === "MEDIUM") {
-    weeks = 6;
-  } else if (selectedValue === "HIGH") {
-    weeks = 7;
-  } else if (selectedValue === "HIGHEST") {
-    weeks = 8;
-  }
-
-  recommendedWeeks.textContent = `(추천 : ${weeks}주)`; // 선택된 값에 따라 텍스트 업데이트
-}

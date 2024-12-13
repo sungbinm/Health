@@ -415,15 +415,3 @@
 .text-wrapper-4 {
   cursor: pointer;
 }
-
-.img:hover,
-.image:hover,
-.image-2:hover,
-.image-3:hover,
-.image-4:hover,
-.image-5:hover,
-.subtract:hover,
-.subtract-2:hover {
-  filter: saturate(2);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
-}
