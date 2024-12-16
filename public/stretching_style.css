@@ -157,7 +157,7 @@
 
 .screen .frame-3 {
   position: relative;
-  width: 137px;
+  width: 70%;
   flex: 0 0 auto;
 }
 
@@ -316,24 +316,23 @@
   left: 1px;
 }
 
-.screen .text-wrapper-4 {
-  flex: 1;
-  align-self: stretch;
-  font-size: 14px;
-  text-align: center;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 0;
-  -webkit-box-orient: vertical;
-  position: relative;
-  font-family: "Inter", Helvetica;
-  font-weight: 700;
-  color: #000000;
-  letter-spacing: 0;
-  line-height: normal;
-  white-space: nowrap;
+.text-wrapper-4 {
+  width: 100%; /* 부모 요소의 너비를 채움 */
+  text-align: justify; /* 텍스트를 양쪽 정렬 */
+  padding: 0 20px; /* 양옆 여백을 추가 */
+  line-height: 1.6; /* 가독성을 위한 줄 간격 */
+  font-size: 16px; /* 글자 크기 조정 */
+  box-sizing: border-box; /* 패딩 포함해 전체 너비 계산 */
 }
+
+.text-wrapper-5 {
+  width: 100%; /* 부모 요소의 너비를 채움 */
+  text-align: justify; /* 텍스트를 양쪽 정렬 */
+  line-height: 1.6; /* 가독성을 위한 줄 간격 */
+  font-size: 16px; /* 글자 크기 조정 */
+  box-sizing: border-box; /* 패딩 포함해 전체 너비 계산 */
+}
+
 
 .screen .frame-13 {
   display: flex;
@@ -354,4 +353,10 @@
 .frame-11,
 .frame-13 {
   cursor: pointer;
+}
+
+.text-styled {
+  font-weight: bold; /* 글씨 굵게 */
+  background: linear-gradient(to bottom, transparent 70%, rgb(138, 253, 205) 70%); /* 배경 밑줄 */
+  display: inline; /* 텍스트에만 스타일 적용 */
 }
