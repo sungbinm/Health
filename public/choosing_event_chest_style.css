@@ -24,7 +24,7 @@
   max-height: 76px;
   height: 76px;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between; /* 로고와 버튼을 양쪽에 배치 */
   gap: 50px;
   padding: 10px 20px;
   position: relative;
@@ -46,42 +46,55 @@
 .div-wrapper .HEA-lth {
   position: relative;
   flex: 0 0 auto;
+  margin-left: -80px; /* 로고 왼쪽으로 밀기 */
 }
 
-.div-wrapper .button {
+.logo-container {
+  flex-grow: 1; /* 로고가 중앙에 오게 함 */
+  display: flex;
+  justify-content: center;
+}
+.user-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: absolute; /* 오른쪽에 고정 */
+  right: 20px;
+}
+
+.text-wrapper {
   all: unset;
   box-sizing: border-box;
   display: flex;
-  width: 52px;
-  height: 30px;
   align-items: center;
   justify-content: center;
-  gap: var(--size-space-200);
-  padding: var(--size-space-300);
-  position: relative;
-  background-color: var(--color-background-brand-default);
-  border-radius: var(--size-radius-200);
-  border: 1px solid;
-  border-color: var(--color-border-brand-default);
-}
-
-.div-wrapper .text-wrapper {
-  all: unset;
-  box-sizing: border-box;
-  position: relative;
-  width: fit-content;
-  margin-top: -6.00px;
-  margin-bottom: -4.00px;
-  margin-left: -8.50px;
-  margin-right: -8.50px;
+  padding: 8px 16px; /* 충분한 여백을 줘서 텍스트가 잘리지 않도록 */
+  cursor: pointer;
+  background-color: black;
+  border: 1px solid var(--color-border-brand-default);
+  border-radius: 3px;
   font-family: var(--single-line-body-base-font-family);
   font-weight: var(--single-line-body-base-font-weight);
   color: var(--color-text-brand-on-brand);
-  font-size: var(--single-line-body-base-font-size);
+  font-size: 14px; /* 폰트 크기 조정 */
   letter-spacing: var(--single-line-body-base-letter-spacing);
   line-height: var(--single-line-body-base-line-height);
-  white-space: nowrap;
-  font-style: var(--single-line-body-base-font-style);
+  white-space: nowrap; /* 텍스트가 줄바꿈 없이 한 줄로 표시 */
+  overflow: hidden;
+  text-overflow: ellipsis; /* 텍스트가 너무 길 경우 ...으로 표시 */
+}
+
+.text-wrapper:hover {
+  background-color: gray;
+}
+#loginButton,
+#logoutButton {
+  display: none;
+}
+
+#logoutButton.show,
+#usernameDisplay.show {
+  display: block;
 }
 
 .div-wrapper .frame-wrapper {
@@ -111,10 +124,10 @@
   flex: 1;
   align-self: stretch;
   flex-grow: 1;
-  margin-top: -6.50px;
-  margin-bottom: -6.50px;
-  margin-left: -200.00px;
-  margin-right: -200.00px;
+  margin-top: -6.5px;
+  margin-bottom: -6.5px;
+  margin-left: -200px;
+  margin-right: -200px;
   background-color: #ffffff;
 }
 
@@ -193,7 +206,7 @@
   position: relative;
   align-self: stretch;
   width: 100%;
-  margin-bottom: -10.00px;
+  margin-bottom: -10px;
   border-radius: var(--size-radius-200);
 }
 
@@ -201,15 +214,15 @@
   position: relative;
   width: 16px;
   height: 16px;
-  margin-top: -4.50px;
-  margin-bottom: -4.50px;
+  margin-top: -4.5px;
+  margin-bottom: -4.5px;
 }
 
 .div-wrapper .text-wrapper-4 {
   position: relative;
   width: fit-content;
-  margin-top: -5.50px;
-  margin-bottom: -3.50px;
+  margin-top: -5.5px;
+  margin-bottom: -3.5px;
   font-family: var(--single-line-body-base-font-family);
   font-weight: var(--single-line-body-base-font-weight);
   color: var(--color-text-default-default);
@@ -258,7 +271,7 @@
 
 .div-wrapper .text-wrapper-5 {
   width: fit-content;
-  margin-top: -1.00px;
+  margin-top: -1px;
   font-weight: 700;
   font-size: 20px;
   white-space: nowrap;
@@ -295,7 +308,7 @@
 .div-wrapper .text-wrapper-6 {
   position: relative;
   width: fit-content;
-  margin-top: -1.00px;
+  margin-top: -1px;
   font-family: "Inter", Helvetica;
   font-weight: 700;
   color: #000000;
@@ -328,9 +341,9 @@
   position: relative;
   width: 73px;
   height: 67px;
-  margin-top: -7.00px;
-  margin-bottom: -7.00px;
-  margin-left: -2.50px;
+  margin-top: -7px;
+  margin-bottom: -7px;
+  margin-left: -2.5px;
 }
 
 .div-wrapper .frame-12 {
@@ -342,8 +355,8 @@
   gap: 8px;
   padding: 10px;
   position: relative;
-  margin-top: -7.00px;
-  margin-bottom: -7.00px;
+  margin-top: -7px;
+  margin-bottom: -7px;
   background-color: #fbfbfb;
   border-radius: 20px;
 }
@@ -395,9 +408,17 @@
   gap: 8px;
   padding: 10px;
   position: relative;
-  margin-top: -7.00px;
-  margin-bottom: -7.00px;
-  margin-right: -2.50px;
+  margin-top: -7px;
+  margin-bottom: -7px;
+  margin-right: -2.5px;
   background-color: #fbfbfb;
   border-radius: 20px;
+}
+
+.text-wrapper-4,
+.arrow-left,
+.frame-12,
+.img,
+.frame-14 {
+  cursor: pointer;
 }
