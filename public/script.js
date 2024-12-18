@@ -108,10 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
- // 페이지 로드 후 디로딩 주기 기본값 설정
- window.onload = function() {
-  updateDeloadingCycle();
-};
+
 
 // 회복력 선택에 따라 디로딩 주기 업데이트
 function updateDeloadingCycle() {
