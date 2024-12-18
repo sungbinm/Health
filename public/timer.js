@@ -172,8 +172,6 @@ function startProgramTimer(restTime, setCount) {
 function startNextSet() {
   if (currentSet < totalSets) {
       currentSet++; // 세트 번호 증가
-      document.getElementById("display").innerText =
-          `세트 ${currentSet}/${totalSets} 시작. 휴식: ${totalSeconds}초`;
 
       totalSeconds = selectedProgram.time; // 다음 세트를 위한 시간 초기화
       timer = setInterval(countTimer, 1000); // 타이머 시작
@@ -207,7 +205,7 @@ function clearTimer(message) {
 
   // 모든 세트가 완료된 경우, 해당 프로그램 항목에 'completed' 클래스를 추가하여 색상 변경
   if (currentSet === totalSets) {
-      markProgramAsCompleted(selectedProgram); // 프로그램 완료 처리
+    markProgramAsCompleted(selectedProgram); // 프로그램 완료 처리
   }
 }
 
@@ -222,4 +220,8 @@ function markProgramAsCompleted(program) {
     }
   });
 }
+
+programItem.dataset.programId = entry._id;
+
+
 

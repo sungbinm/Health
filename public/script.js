@@ -42,6 +42,10 @@ function goToAddprogram() {
   window.location.href = "add_program.html";
 }
 
+function goToChest() {
+  window.location.href = "choosing_event_chest.html";
+}
+
 function logout() {
   fetch("http://localhost:3000/logout", {
     method: "POST",
