@@ -19,12 +19,12 @@
   flex-grow: 1;
 }
 
-.screen .div {
+.frame .div1 {
   display: flex;
   max-height: 76px;
   height: 76px;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between; /* 로고와 버튼을 양쪽에 배치 */
   gap: 50px;
   padding: 10px 20px;
   position: relative;
@@ -43,439 +43,61 @@
   background-color: #ffffff;
 }
 
-.screen .HEA-lth {
+.HEA-lth {
   position: relative;
   flex: 0 0 auto;
+  margin-left: -80px; /* 로고 왼쪽으로 밀기 */
 }
 
-.screen .button {
+.logo-container {
+  flex-grow: 1; /* 로고가 중앙에 오게 함 */
+  display: flex;
+  justify-content: center;
+}
+
+.user-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: absolute; /* 오른쪽에 고정 */
+  right: 20px;
+}
+
+.text-wrapper {
   all: unset;
   box-sizing: border-box;
   display: flex;
-  width: 52px;
-  height: 30px;
   align-items: center;
   justify-content: center;
-  gap: var(--size-space-200);
-  padding: var(--size-space-300);
-  position: relative;
-  background-color: var(--color-background-brand-default);
-  border-radius: var(--size-radius-200);
-  border: 1px solid;
-  border-color: var(--color-border-brand-default);
-}
-
-.screen .text-wrapper {
-  all: unset;
-  box-sizing: border-box;
-  position: relative;
-  width: fit-content;
-  margin-top: -6.00px;
-  margin-bottom: -4.00px;
-  margin-left: -8.50px;
-  margin-right: -8.50px;
+  padding: 8px 16px; /* 충분한 여백을 줘서 텍스트가 잘리지 않도록 */
+  cursor: pointer;
+  background-color: black;
+  border: 1px solid var(--color-border-brand-default);
+  border-radius: 3px;
   font-family: var(--single-line-body-base-font-family);
   font-weight: var(--single-line-body-base-font-weight);
   color: var(--color-text-brand-on-brand);
-  font-size: var(--single-line-body-base-font-size);
+  font-size: 14px; /* 폰트 크기 조정 */
   letter-spacing: var(--single-line-body-base-letter-spacing);
   line-height: var(--single-line-body-base-line-height);
-  white-space: nowrap;
-  font-style: var(--single-line-body-base-font-style);
-}
-
-.screen .frame-wrapper {
-  display: flex;
-  min-height: 690px;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 0px 200px;
-  position: relative;
-  flex: 1;
-  align-self: stretch;
-  width: 100%;
-  flex-grow: 1;
-  background-color: #c4c4c4;
-}
-
-.screen .frame-2 {
-  display: flex;
-  flex-direction: column;
-  min-width: 393px;
-  max-width: 600px;
-  min-height: 703px;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  position: relative;
-  flex: 1;
-  align-self: stretch;
-  flex-grow: 1;
-  margin-top: -6.50px;
-  margin-bottom: -6.50px;
-  margin-left: -51.00px;
-  margin-right: -51.00px;
-  background-color: #ffffff;
-}
-
-.screen .pagination-previous {
-  display: flex;
-  height: 23px;
-  align-items: center;
-  gap: var(--size-space-200);
-  padding: var(--size-space-200) var(--size-space-300) var(--size-space-200)
-    var(--size-space-300);
-  position: relative;
-  align-self: stretch;
-  width: 100%;
-  border-radius: var(--size-radius-200);
-}
-
-.screen .arrow-left {
-  position: relative;
-  width: 16px;
-  height: 16px;
-  margin-top: -4.50px;
-  margin-bottom: -4.50px;
-}
-
-.screen .text-wrapper-2 {
-  position: relative;
-  width: fit-content;
-  margin-top: -5.50px;
-  margin-bottom: -3.50px;
-  font-family: var(--single-line-body-base-font-family);
-  font-weight: var(--single-line-body-base-font-weight);
-  color: var(--color-text-default-default);
-  font-size: var(--single-line-body-base-font-size);
-  letter-spacing: var(--single-line-body-base-letter-spacing);
-  line-height: var(--single-line-body-base-line-height);
-  white-space: nowrap;
-  font-style: var(--single-line-body-base-font-style);
-}
-
-.screen .modal-date-picker {
-  display: flex;
-  flex-direction: column;
-  width: 341px;
-  height: 330px;
-  align-items: flex-start;
-  position: relative;
-  background-color: var(--color-background-warning-tertiary);
-  border-radius: 28px;
+  white-space: nowrap; /* 텍스트가 줄바꿈 없이 한 줄로 표시 */
   overflow: hidden;
+  text-overflow: ellipsis; /* 텍스트가 너무 길 경우 ...으로 표시 */
 }
 
-.screen .local-selection-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0px 12px 0px 16px;
-  position: relative;
-  align-self: stretch;
-  width: 100%;
-  flex: 0 0 auto;
+.text-wrapper:hover {
+  background-color: gray;
 }
 
-.screen .building-blocks-menu {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-  position: relative;
-  flex: 0 0 auto;
+/* 로그인 시 로고와 버튼의 위치 조정 */
+#loginButton,
+#logoutButton {
+  display: none;
 }
 
-.screen .state-layer {
-  display: inline-flex;
-  gap: 8px;
-  padding: 10px 4px 10px 8px;
-  flex: 0 0 auto;
-  border-radius: 100px;
-  overflow: hidden;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.screen .label-text {
-  position: relative;
-  width: fit-content;
-  font-family: var(--m3-label-large-font-family);
-  font-weight: var(--m3-label-large-font-weight);
-  color: #49454f;
-  font-size: var(--m3-label-large-font-size);
-  text-align: center;
-  letter-spacing: var(--m3-label-large-letter-spacing);
-  line-height: var(--m3-label-large-line-height);
-  white-space: nowrap;
-  font-style: var(--m3-label-large-font-style);
-}
-
-.screen .icon {
-  position: relative;
-  width: 18px;
-  height: 18px;
-}
-
-.screen .controls {
-  display: inline-flex;
-  align-items: flex-start;
-  position: relative;
-  flex: 0 0 auto;
-}
-
-.screen .icon-button {
-  display: flex;
-  flex-direction: column;
-  width: 48px;
-  height: 48px;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  position: relative;
-}
-
-.screen .container {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex: 0 0 auto;
-  border-radius: 100px;
-  overflow: hidden;
-  gap: 10px;
-  position: relative;
-}
-
-.screen .icon-wrapper {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 8px;
-  position: relative;
-  flex: 0 0 auto;
-}
-
-.screen .img {
-  position: relative;
-  width: 24px;
-  height: 24px;
-}
-
-.screen .local-calendar-grid {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0px 12px;
-  position: relative;
-  align-self: stretch;
-  width: 100%;
-  flex: 0 0 auto;
-}
-
-.screen .div-2 {
-  display: flex;
-  height: 48px;
-  align-items: flex-start;
-  justify-content: center;
-  position: relative;
-  align-self: stretch;
-  width: 100%;
-}
-
-.screen .div-wrapper {
-  gap: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  flex: 1;
-  align-self: stretch;
-  flex-grow: 1;
-}
-
-.screen .date {
-  font-weight: var(--m3-body-large-font-weight);
-  color: #1d1b20;
-  font-size: var(--m3-body-large-font-size);
-  letter-spacing: var(--m3-body-large-letter-spacing);
-  line-height: var(--m3-body-large-line-height);
-  position: relative;
-  width: fit-content;
-  font-family: var(--m3-body-large-font-family);
-  text-align: center;
-  white-space: nowrap;
-  font-style: var(--m3-body-large-font-style);
-}
-
-.screen .container-wrapper {
-  gap: 8px;
-  padding: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  flex: 1;
-  align-self: stretch;
-  flex-grow: 1;
-}
-
-.screen .state-layer-wrapper {
-  display: flex;
-  width: 40px;
-  height: 40px;
-  align-items: center;
-  justify-content: center;
-  margin-left: -1.36px;
-  margin-right: -1.36px;
-  gap: 10px;
-  position: relative;
-}
-
-.screen .state-layer-2 {
-  display: flex;
-  width: 40px;
-  height: 40px;
-  gap: 10px;
-  padding: 10px;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.screen .empty-container {
-  position: relative;
-  width: 22px;
-  height: 24px;
-  margin-top: -2.00px;
-  margin-bottom: -2.00px;
-  margin-left: -1.00px;
-  margin-right: -1.00px;
-}
-
-.screen .container-2 {
-  display: flex;
-  width: 40px;
-  height: 40px;
-  align-items: center;
-  justify-content: center;
-  border-radius: 100px;
-  overflow: hidden;
-  gap: 10px;
-  position: relative;
-}
-
-.screen .date-wrapper {
-  display: flex;
-  width: 40px;
-  height: 40px;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.screen .container-3 {
-  display: flex;
-  width: 40px;
-  height: 40px;
-  align-items: center;
-  justify-content: center;
-  border-radius: 100px;
-  overflow: hidden;
-  border: 1px solid;
-  border-color: #000000;
-  gap: 10px;
-  position: relative;
-}
-
-.screen .date-2 {
-  margin-top: -3.00px;
-  margin-bottom: -1.00px;
-  font-weight: var(--m3-body-large-font-weight);
-  color: #000000;
-  font-size: var(--m3-body-large-font-size);
-  letter-spacing: var(--m3-body-large-letter-spacing);
-  line-height: var(--m3-body-large-line-height);
-  position: relative;
-  width: fit-content;
-  font-family: var(--m3-body-large-font-family);
-  text-align: center;
-  white-space: nowrap;
-  font-style: var(--m3-body-large-font-style);
-}
-
-.screen .thursday {
-  flex-direction: column;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  position: relative;
-  flex: 1;
-  align-self: stretch;
-  flex-grow: 1;
-}
-
-.screen .container-4 {
-  display: flex;
-  width: 40px;
-  height: 40px;
-  align-items: flex-start;
-  background-color: #000000;
-  border-radius: 100px;
-  overflow: hidden;
-  gap: 10px;
-  position: relative;
-}
-
-.screen .date-3 {
-  font-weight: var(--m3-label-large-font-weight);
-  color: #fffbeb;
-  font-size: var(--m3-label-large-font-size);
-  letter-spacing: var(--m3-label-large-letter-spacing);
-  line-height: var(--m3-label-large-line-height);
-  position: relative;
-  width: fit-content;
-  font-family: var(--m3-label-large-font-family);
-  text-align: center;
-  white-space: nowrap;
-  font-style: var(--m3-label-large-font-style);
-}
-
-.screen .frame-3 {
-  display: inline-flex;
-  flex-direction: column;
-  height: 312px;
-  align-items: center;
-  position: relative;
-  background-color: #f5f5f5;
-  border-radius: 15px;
-}
-
-.screen .p {
-  height: 36px;
-  margin-top: -1.00px;
-  font-family: var(--m3-body-large-font-family);
-  font-weight: var(--m3-body-large-font-weight);
-  font-size: var(--m3-body-large-font-size);
-  letter-spacing: var(--m3-body-large-letter-spacing);
-  line-height: var(--m3-body-large-line-height);
-  position: relative;
-  align-self: stretch;
-  color: #000000;
-  text-align: center;
-  font-style: var(--m3-body-large-font-style);
-}
-
-.screen .rectangle-2 {
-  position: relative;
-  width: 341px;
-  height: 254px;
-  background-color: #f5f5f5;
-  border-radius: 14px;
+#logoutButton.show,
+#usernameDisplay.show {
+  display: block;
 }
 
 .screen .frame-4 {
@@ -501,8 +123,8 @@
   position: relative;
   width: 73px;
   height: 67px;
-  margin-top: -7.00px;
-  margin-bottom: -7.00px;
+  margin-top: -7px;
+  margin-bottom: -7px;
 }
 
 .screen .frame-6 {
@@ -514,8 +136,8 @@
   gap: 8px;
   padding: 10px;
   position: relative;
-  margin-top: -7.00px;
-  margin-bottom: -7.00px;
+  margin-top: -7px;
+  margin-bottom: -7px;
   background-color: #fbfbfb;
   border-radius: 20px;
 }
@@ -533,11 +155,15 @@
   left: 1px;
 }
 
-.screen .text-wrapper-3 {
+.screen .text-wrapper-4 {
+  position: relative;
   flex: 1;
+  align-self: stretch;
   font-family: "Inter", Helvetica;
   font-weight: 700;
+  color: #000000;
   font-size: 14px;
+  text-align: center;
   letter-spacing: 0;
   line-height: normal;
   white-space: nowrap;
@@ -546,10 +172,6 @@
   display: -webkit-box;
   -webkit-line-clamp: 0;
   -webkit-box-orient: vertical;
-  position: relative;
-  align-self: stretch;
-  color: #000000;
-  text-align: center;
 }
 
 .screen .frame-8 {
@@ -561,8 +183,159 @@
   gap: 8px;
   padding: 10px;
   position: relative;
-  margin-top: -7.00px;
-  margin-bottom: -7.00px;
+  margin-top: -7px;
+  margin-bottom: -7px;
   background-color: #fbfbfb;
   border-radius: 20px;
+}
+
+.frame-5,
+.frame-6,
+.frame-8 {
+  cursor: pointer;
+}
+
+.calendar-container {
+  width: 90%;
+  max-width: 600px;
+  text-align: center;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+#current-month {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr); /* 7개의 열 */
+  gap: 5px; /* 날짜들 간의 간격 */
+  text-align: center; /* 내용 중앙 정렬 */
+  justify-items: center; /* 각 아이템 중앙 정렬 */
+  margin: 20px auto; /* 화면 중앙 정렬 */
+  max-width: 100%;
+}
+
+.day-label {
+  display: inline-block;
+  width: 30px;
+  text-align: center;
+  margin: 5px;
+  font-weight: bold;
+  color: #333;
+}
+#days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.day {
+  display: flex;
+  align-items: center; /* 세로 중앙 정렬 */
+  justify-content: center; /* 가로 중앙 정렬 */
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.day:hover {
+  background-color: #f0f0f0;
+}
+
+.has-record {
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+
+.hidden {
+  display: none !important;
+}
+
+#modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  box-sizing: border-box; /* 테두리와 패딩이 전체 너비에 포함되도록 설정 */
+}
+
+.table-container {
+  overflow-x: auto; /* 가로 스크롤이 필요할 경우 스크롤 추가 */
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  width: 50%; /* 모달 너비를 화면의 90%로 설정 */
+  max-width: 1200px; /* 최대 너비를 1200px로 설정 (너무 넓지 않게 제한) */
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+#close-modal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th,
+td {
+  min-width: 50px; /* 각 열의 최소 너비 */
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+  word-wrap: break-word; /* 긴 글자도 줄바꿈 되도록 */
+  white-space: normal; /* 텍스트가 넘칠 경우 줄바꿈을 허용 */
+}
+
+th {
+  font-weight: bold;
+}
+
+button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #45a049;
+}
+
+input {
+  width: 100%;
+  margin-top: 10px;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
