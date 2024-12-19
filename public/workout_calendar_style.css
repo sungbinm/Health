@@ -339,3 +339,37 @@ input {
   border: 1px solid #ddd;
   border-radius: 5px;
 }
+
+.screen .frame-wrapper {
+  display: flex;
+  min-height: 690px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0px 200px;
+  position: relative;
+  flex: 1;
+  align-self: stretch;
+  width: 100%;
+  flex-grow: 1;
+  background-color: #c4c4c4;
+}
+
+.screen .div {
+  display: flex;
+  flex-direction: column;
+  min-width: 393px;
+  max-width: 600px;
+  min-height: 703px;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex: 1;
+  align-self: stretch;
+  flex-grow: 1;
+  margin-top: -6.5px;
+  margin-bottom: -6.5px;
+  margin-left: -95.5px;
+  margin-right: -95.5px;
+  background-color: #ffffff;
+}
