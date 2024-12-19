@@ -6,6 +6,37 @@
     <link rel="stylesheet" href="program_styleguide.css" />
     <link rel="stylesheet" href="program_style.css" />
     <script src="script.js"></script>
+    <style>
+      .table-container {
+            width: 90%;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+    </style>
   </head>
   <body>
     <div class="screen">
@@ -51,41 +82,52 @@
             <div class="frame-4">
               <div class="frame-5">
                 <p class="p">운동 종류 / 횟수 / 세트수 / 무게 / 휴식시간</p>
-                <div id="programDisplay" class="rectangle-2"></div>
-              </div>
-              <div class="frame-6">
-                <img class="calendar"
-                  src="https://c.animaapp.com/7SI92Z7a/img/calendar.svg"
-                  onclick="goToCalendar()" />
-                <button class="button-2" onclick="goToAddprogram()">프로그램
-                  추가하기</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="frame-7">
-        <img class="img"
-          src="https://c.animaapp.com/7SI92Z7a/img/frame-65.png"
-          onclick="goToProgram()" />
-        <div class="frame-8" onclick="goToHome()">
-          <div class="weightlifting">
-            <div class="img-wrapper">
-              <img class="frame-9"
-                src="https://c.animaapp.com/7SI92Z7a/img/frame-61.svg" />
-            </div>
-          </div>
-          <div class="text-wrapper-4">홈</div>
-        </div>
-        <div class="frame-10" onclick="goToTraining()">
-          <img class="weightlifting"
-            src="https://c.animaapp.com/7SI92Z7a/img/weightlifting.svg" />
-          <div class="text-wrapper-4">훈련</div>
-        </div>
-      </div>
-    </div>
 
-    <!-- 프로그램 관련 스크립트 -->
-  </body>
-  <script src="program.js"></script>
-</html>
+                <!-- 운동 프로그램 표 -->
+                <div class="table-container">
+                  <table>
+                    <thead>
+                      <tr>
+                      </tr>
+                    </thead>
+                    <tbody id="programDisplay">
+                      <!-- 운동 정보가 여기에 동적으로 삽입됩니다. -->
+                    </tbody>
+                  </table>
+                </div>
+                <div class="frame-6">
+                  <img class="calendar"
+                    src="https://c.animaapp.com/7SI92Z7a/img/calendar.svg"
+                    onclick="goToCalendar()" />
+                  <button class="button-2" onclick="goToAddprogram()">프로그램
+                    추가하기</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="frame-7">
+          <img class="img"
+            src="https://c.animaapp.com/7SI92Z7a/img/frame-65.png"
+            onclick="goToProgram()" />
+          <div class="frame-8" onclick="goToHome()">
+            <div class="weightlifting">
+              <div class="img-wrapper">
+                <img class="frame-9"
+                  src="https://c.animaapp.com/7SI92Z7a/img/frame-61.svg" />
+              </div>
+            </div>
+            <div class="text-wrapper-4">홈</div>
+          </div>
+          <div class="frame-10" onclick="goToTraining()">
+            <img class="weightlifting"
+              src="https://c.animaapp.com/7SI92Z7a/img/weightlifting.svg" />
+            <div class="text-wrapper-4">훈련</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 프로그램 관련 스크립트 -->
+    </body>
+    <script src="program.js"></script>
+  </html>
