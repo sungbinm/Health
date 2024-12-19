@@ -82,7 +82,7 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
-    padding: 0px 200px;
+    padding: 0px 20px;
     position: relative;
     flex: 1;
     align-self: stretch;
@@ -96,13 +96,13 @@
     flex-direction: column;
     min-width: 393px;
     max-width: 600px;
-    min-height: 703px;
+    min-height: 400px;
     align-items: center;
     justify-content: center;
     position: relative;
     align-self: stretch;
     flex: 0 0 auto;
-    margin-top: -6.5px;
+    margin-top: -600px;
     margin-bottom: -6.5px;
     margin-left: -70px;
     margin-right: -70px;
@@ -126,7 +126,7 @@
     font-family: "Inter", Helvetica;
     font-weight: 700;
     color: #000000;
-    font-size: 32px;
+    font-size: 24px;
     letter-spacing: 0;
     line-height: normal;
   }
@@ -172,29 +172,50 @@
     position: relative;
     align-self: stretch;
     width: 100%;
-    height: 256px;
-    background-color: #ffffff;
-    border: 1px solid;
-    border-color: #dbdbdb;
-  }
+    height: 256px; /* 프레임 높이 */
+    display: flex; /* Flexbox로 자식 요소를 정렬 */
+    justify-content: center; /* 이미지를 가로로 중앙 정렬 */
+    align-items: center; /* 이미지를 세로로 중앙 정렬 */
+    overflow: hidden; /* 이미지가 프레임 밖으로 튀어나가지 않게 설정 */
+}
+
+.screen .rectangle-2 img {
+    width: 100%; /* 이미지가 프레임 너비에 맞게 크기 조정 */
+    height: 100%; /* 이미지가 프레임 높이에 맞게 크기 조정 */
+    object-fit: cover; /* 이미지가 프레임에 맞게 잘리지 않도록 크기 조정 */
+}
+
   
   .screen .frame-7 {
     position: relative;
     align-self: stretch;
     width: 100%;
-    height: 123px;
-    background-color: #dbdbdb;
     border-radius: 10px;
-  }
+    padding: 10px; /* 텍스트와 경계 간의 여백 */
+    box-sizing: border-box; /* 패딩을 포함한 크기 계산 */
+    overflow: visible; /* 아래쪽으로 넘친 텍스트가 잘리지 않도록 설정 */
+    height: auto; /* 높이를 텍스트 내용에 맞게 조정 */
+    min-height: 50px; /* 최소 높이 지정 */
+}
+
+
   
-  .screen .frame-8 {
-    position: relative;
-    align-self: stretch;
-    width: 100%;
-    height: 76px;
-    background-color: #ffffff;
-  }
-  
+.screen .frame-8 {
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  height: 76px; /* 높이는 고정 */
+  background-color: #ffffff;
+  display: flex; /* Flexbox 사용 */
+  justify-content: center; /* 가로로 중앙 정렬 */
+  align-items: center; /* 세로로 중앙 정렬 */
+}
+
+.screen .frame-8 iframe {
+  max-width: 100%; /* iframe의 너비를 부모 컨테이너에 맞게 제한 */
+  height: auto; /* 자동으로 높이 조정 */
+}
+
   .screen .frame-9 {
     display: flex;
     width: 363px;
@@ -332,3 +353,7 @@
     cursor: pointer;
   }
   
+  .text-styled {
+    font-weight: bold; /* 글씨 굵게 */
+    display: inline; /* 텍스트에만 스타일 적용 */
+  }
