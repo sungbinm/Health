@@ -251,3 +251,377 @@ window.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+
+
+
+window.showPrograms_deloading = function (day) {
+  const programDisplay = document.getElementById("programDisplay");
+
+  if (!programDisplay) {
+    console.error("프로그램 표시 영역을 찾을 수 없습니다.");
+    return;
+  }
+
+  // 프로그램을 새로 불러오기 전에, 이전 프로그램을 지웁니다.
+  programDisplay.innerHTML = "";
+
+  fetch("/get-programs", {
+    method: "GET",
+    credentials: "include", // 세션 쿠키를 포함하여 요청
+  })
+    .then((response) => response.json())
+    .then((storedPrograms) => {
+      console.log("받은 프로그램:", storedPrograms); // 응답 확인
+
+      if (
+        storedPrograms &&
+        storedPrograms[day] &&
+        storedPrograms[day].length > 0
+      ) {
+        const dayPrograms = storedPrograms[day];
+
+        // 테이블 생성
+        const table = document.createElement("table");
+        table.style.width = "100%"; // 테이블을 가득 채우도록 설정
+        table.style.borderCollapse = "collapse"; // 셀 간 간격을 제거하여 테이블을 깔끔하게
+
+        // 테이블 헤더 추가
+        const headerRow = document.createElement("tr");
+        const headers = [
+          "운동 종류",
+          "횟수",
+          "세트수",
+          "무게",
+          "휴식시간",
+          "삭제",
+        ];
+        headers.forEach((header) => {
+          const th = document.createElement("th");
+          th.style.padding = "10px"; // 패딩 추가
+          th.style.border = "1px solid #ddd"; // 테두리 추가
+          th.textContent = header;
+          headerRow.appendChild(th);
+        });
+        table.appendChild(headerRow); // 테이블에 헤더 추가
+
+        // 각 운동 항목을 개별 행으로 추가
+        dayPrograms.forEach((entry) => {
+          const row = document.createElement("tr");
+
+          // 운동 종류
+          const exerciseCell = document.createElement("td");
+          exerciseCell.textContent = entry.exercise; // 운동 종류
+          exerciseCell.style.padding = "8px"; // 패딩 추가
+          exerciseCell.style.border = "1px solid #ddd"; // 테두리 추가
+          row.appendChild(exerciseCell);
+
+          // 횟수
+          const countCell = document.createElement("td");
+          countCell.textContent = entry.count; // 횟수
+          countCell.style.padding = "8px"; // 패딩 추가
+          countCell.style.border = "1px solid #ddd"; // 테두리 추가
+          row.appendChild(countCell);
+
+          // 세트수 - 짝수일 경우 1/2 곱하기, 홀수일 경우 1/2 곱하고 1 더하기
+          const setCountCell = document.createElement("td");
+          let setCount = entry.setCount;
+          if (setCount % 2 === 0) {
+            setCount = setCount * 0.5; // 짝수인 경우 1/2을 곱함
+          } else {
+            setCount = setCount * 0.5 + 0.5; // 홀수인 경우 1/2을 곱하고 0.5을 더함(반올림림)
+          }
+          setCountCell.textContent = setCount.toFixed(1); // 소수점 1자리로 표시
+          setCountCell.style.padding = "8px"; // 패딩 추가
+          setCountCell.style.border = "1px solid #ddd"; // 테두리 추가
+          row.appendChild(setCountCell);
+
+          // 무게
+          const weightCell = document.createElement("td");
+          weightCell.textContent = entry.weight; // 무게
+          weightCell.style.padding = "8px"; // 패딩 추가
+          weightCell.style.border = "1px solid #ddd"; // 테두리 추가
+          row.appendChild(weightCell);
+
+          // 휴식시간
+          const timeCell = document.createElement("td");
+          timeCell.textContent = entry.time; // 휴식시간
+          timeCell.style.padding = "8px"; // 패딩 추가
+          timeCell.style.border = "1px solid #ddd"; // 테두리 추가
+          row.appendChild(timeCell);
+
+          // 삭제 버튼
+          const deleteButtonCell = document.createElement("td");
+          const deleteButton = document.createElement("button");
+          deleteButton.textContent = "삭제";
+          deleteButton.className = "delete-button";
+          deleteButton.onclick = function () {
+            // 삭제 버튼 클릭 시 해당 행 숨기기
+            row.style.display = "none"; // 해당 운동 항목만 화면에서 숨김
+          };
+          deleteButtonCell.appendChild(deleteButton);
+          deleteButtonCell.style.padding = "8px"; // 패딩 추가
+          deleteButtonCell.style.border = "1px solid #ddd"; // 테두리 추가
+          row.appendChild(deleteButtonCell);
+
+          // 행을 테이블에 추가
+          table.appendChild(row);
+        });
+
+        // 테이블을 화면에 표시
+        programDisplay.appendChild(table);
+      } else {
+        programDisplay.textContent = "해당 요일에 프로그램이 없습니다.";
+      }
+    })
+    .catch((error) => {
+      console.error("프로그램 로드 중 오류 발생:", error);
+      programDisplay.textContent = "프로그램 로드 중 오류 발생.";
+    });
+};
+
+
+window.showPrograms_deloading_weight = function (day) {
+  const programDisplay = document.getElementById("programDisplay");
+
+  if (!programDisplay) {
+    console.error("프로그램 표시 영역을 찾을 수 없습니다.");
+    return;
+  }
+
+  // 프로그램을 새로 불러오기 전에, 이전 프로그램을 지웁니다.
+  programDisplay.innerHTML = "";
+
+  fetch("/get-programs", {
+    method: "GET",
+    credentials: "include", // 세션 쿠키를 포함하여 요청
+  })
+    .then((response) => response.json())
+    .then((storedPrograms) => {
+      console.log("받은 프로그램:", storedPrograms); // 응답 확인
+
+      if (
+        storedPrograms &&
+        storedPrograms[day] &&
+        storedPrograms[day].length > 0
+      ) {
+        const dayPrograms = storedPrograms[day];
+
+        // 테이블 생성
+        const table = document.createElement("table");
+        table.style.width = "100%"; // 테이블을 가득 채우도록 설정
+        table.style.borderCollapse = "collapse"; // 셀 간 간격을 제거하여 테이블을 깔끔하게
+
+        // 테이블 헤더 추가
+        const headerRow = document.createElement("tr");
+        const headers = [
+          "운동 종류",
+          "횟수",
+          "세트수",
+          "무게",
+          "휴식시간",
+          "삭제",
+        ];
+        headers.forEach((header) => {
+          const th = document.createElement("th");
+          th.style.padding = "10px"; // 패딩 추가
+          th.style.border = "1px solid #ddd"; // 테두리 추가
+          th.textContent = header;
+          headerRow.appendChild(th);
+        });
+        table.appendChild(headerRow); // 테이블에 헤더 추가
+
+        // 각 운동 항목을 개별 행으로 추가
+        dayPrograms.forEach((entry) => {
+          const row = document.createElement("tr");
+
+          // 운동 종류
+          const exerciseCell = document.createElement("td");
+          exerciseCell.textContent = entry.exercise; // 운동 종류
+          exerciseCell.style.padding = "8px"; // 패딩 추가
+          exerciseCell.style.border = "1px solid #ddd"; // 테두리 추가
+          row.appendChild(exerciseCell);
+
+          // 횟수
+          const countCell = document.createElement("td");
+          countCell.textContent = entry.count; // 횟수
+          countCell.style.padding = "8px"; // 패딩 추가
+          countCell.style.border = "1px solid #ddd"; // 테두리 추가
+          row.appendChild(countCell);
+
+          // 세트수 - 짝수일 경우 1/2 곱하기, 홀수일 경우 1/2 곱하고 1 더하기
+          const setCountCell = document.createElement("td");
+          let setCount = entry.setCount;
+          
+          setCountCell.textContent = setCount.toFixed(1); // 소수점 1자리로 표시
+          setCountCell.style.padding = "8px"; // 패딩 추가
+          setCountCell.style.border = "1px solid #ddd"; // 테두리 추가
+          row.appendChild(setCountCell);
+
+          // 무게 - 반으로 줄여서 표시
+          const weightCell = document.createElement("td");
+          const reducedWeight = entry.weight / 2; // 무게를 반으로 줄이기
+          weightCell.textContent = reducedWeight.toFixed(1); // 소수점 1자리로 표시
+          weightCell.style.padding = "8px"; // 패딩 추가
+          weightCell.style.border = "1px solid #ddd"; // 테두리 추가
+          row.appendChild(weightCell);
+
+          // 휴식시간
+          const timeCell = document.createElement("td");
+          timeCell.textContent = entry.time; // 휴식시간
+          timeCell.style.padding = "8px"; // 패딩 추가
+          timeCell.style.border = "1px solid #ddd"; // 테두리 추가
+          row.appendChild(timeCell);
+
+          // 삭제 버튼
+          const deleteButtonCell = document.createElement("td");
+          const deleteButton = document.createElement("button");
+          deleteButton.textContent = "삭제";
+          deleteButton.className = "delete-button";
+          deleteButton.onclick = function () {
+            // 삭제 버튼 클릭 시 해당 행 숨기기
+            row.style.display = "none"; // 해당 운동 항목만 화면에서 숨김
+          };
+          deleteButtonCell.appendChild(deleteButton);
+          deleteButtonCell.style.padding = "8px"; // 패딩 추가
+          deleteButtonCell.style.border = "1px solid #ddd"; // 테두리 추가
+          row.appendChild(deleteButtonCell);
+
+          // 행을 테이블에 추가
+          table.appendChild(row);
+        });
+
+        // 테이블을 화면에 표시
+        programDisplay.appendChild(table);
+      } else {
+        programDisplay.textContent = "해당 요일에 프로그램이 없습니다.";
+      }
+    })
+    .catch((error) => {
+      console.error("프로그램 로드 중 오류 발생:", error);
+      programDisplay.textContent = "프로그램 로드 중 오류 발생.";
+    });
+};
+
+
+
+window.showPrograms_deloading_reps = function (day) {
+  const programDisplay = document.getElementById("programDisplay");
+
+  if (!programDisplay) {
+    console.error("프로그램 표시 영역을 찾을 수 없습니다.");
+    return;
+  }
+
+  // 프로그램을 새로 불러오기 전에, 이전 프로그램을 지웁니다.
+  programDisplay.innerHTML = "";
+
+  fetch("/get-programs", {
+    method: "GET",
+    credentials: "include", // 세션 쿠키를 포함하여 요청
+  })
+    .then((response) => response.json())
+    .then((storedPrograms) => {
+      console.log("받은 프로그램:", storedPrograms); // 응답 확인
+
+      if (
+        storedPrograms &&
+        storedPrograms[day] &&
+        storedPrograms[day].length > 0
+      ) {
+        const dayPrograms = storedPrograms[day];
+
+        // 테이블 생성
+        const table = document.createElement("table");
+        table.style.width = "100%"; // 테이블을 가득 채우도록 설정
+        table.style.borderCollapse = "collapse"; // 셀 간 간격을 제거하여 테이블을 깔끔하게
+
+        // 테이블 헤더 추가
+        const headerRow = document.createElement("tr");
+        const headers = [
+          "운동 종류",
+          "횟수",
+          "세트수",
+          "무게",
+          "휴식시간",
+          "삭제",
+        ];
+        headers.forEach((header) => {
+          const th = document.createElement("th");
+          th.style.padding = "10px"; // 패딩 추가
+          th.style.border = "1px solid #ddd"; // 테두리 추가
+          th.textContent = header;
+          headerRow.appendChild(th);
+        });
+        table.appendChild(headerRow); // 테이블에 헤더 추가
+
+        // 각 운동 항목을 개별 행으로 추가
+        dayPrograms.forEach((entry) => {
+          const row = document.createElement("tr");
+
+          // 운동 종류
+          const exerciseCell = document.createElement("td");
+          exerciseCell.textContent = entry.exercise; // 운동 종류
+          exerciseCell.style.padding = "8px"; // 패딩 추가
+          exerciseCell.style.border = "1px solid #ddd"; // 테두리 추가
+          row.appendChild(exerciseCell);
+
+          // 횟수 - 짝수일 경우 1/2을 곱하고, 홀수일 경우 1/2을 곱하고 0.5를 더하기
+          const countCell = document.createElement("td");
+          let count = entry.count;
+          
+          countCell.textContent = count.toFixed(1); // 소수점 1자리로 표시
+          countCell.style.padding = "8px"; // 패딩 추가
+          countCell.style.border = "1px solid #ddd"; // 테두리 추가
+          row.appendChild(countCell);
+
+          // 세트수
+          const setCountCell = document.createElement("td");
+          setCountCell.textContent = entry.setCount; // 세트수
+          setCountCell.style.padding = "8px"; // 패딩 추가
+          setCountCell.style.border = "1px solid #ddd"; // 테두리 추가
+          row.appendChild(setCountCell);
+
+          // 무게 - 반으로 줄여서 표시
+          const weightCell = document.createElement("td");
+          const reducedWeight = entry.weight / 2; // 무게를 반으로 줄이기
+          weightCell.textContent = reducedWeight.toFixed(1); // 소수점 1자리로 표시
+          weightCell.style.padding = "8px"; // 패딩 추가
+          weightCell.style.border = "1px solid #ddd"; // 테두리 추가
+          row.appendChild(weightCell);
+
+          // 휴식시간
+          const timeCell = document.createElement("td");
+          timeCell.textContent = entry.time; // 휴식시간
+          timeCell.style.padding = "8px"; // 패딩 추가
+          timeCell.style.border = "1px solid #ddd"; // 테두리 추가
+          row.appendChild(timeCell);
+
+          // 삭제 버튼
+          const deleteButtonCell = document.createElement("td");
+          const deleteButton = document.createElement("button");
+          deleteButton.textContent = "삭제";
+          deleteButton.className = "delete-button";
+          deleteButton.onclick = function () {
+            // 삭제 버튼 클릭 시 해당 행 숨기기
+            row.style.display = "none"; // 해당 운동 항목만 화면에서 숨김
+          };
+          deleteButtonCell.appendChild(deleteButton);
+          deleteButtonCell.style.padding = "8px"; // 패딩 추가
+          deleteButtonCell.style.border = "1px solid #ddd"; // 테두리 추가
+          row.appendChild(deleteButtonCell);
+
+          // 행을 테이블에 추가
+          table.appendChild(row);
+        });
+
+        // 테이블을 화면에 표시
+        programDisplay.appendChild(table);
+      } else {
+        programDisplay.textContent = "해당 요일에 프로그램이 없습니다.";
+      }
+    })
+    .catch((error) => {
+      console.error("프로그램 로드 중 오류 발생:", error);
+      programDisplay.textContent = "프로그램 로드 중 오류 발생.";
+    });
+};

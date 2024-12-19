@@ -14,6 +14,7 @@ function goToWorkoutexplanation() {
   window.location.href = "workout_explanation.html";
 }
 
+
 function goBack() {
   history.back();
 }
@@ -21,6 +22,21 @@ function goBack() {
 function goToDeloading() {
   window.location.href = "volume_deloading.html";
 }
+
+function goToDeloading_set() { // 디로딩 프로그램(세트수)
+  window.location.href = "program_deloading_set.html";
+}
+
+function goToDeloading_reps() { // 디로딩 프로그램(횟수)
+  window.location.href = "program_deloading_reps.html";
+}
+
+
+
+function goToDeloading_set() { // 디로딩 프로그램(중량)
+  window.location.href = "program_deloading_weight.html";
+}
+
 
 function goToRecommend() {
   window.location.href = "program_recommend.html";
