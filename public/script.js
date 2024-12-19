@@ -46,6 +46,12 @@ function goToChest() {
   window.location.href = "choosing_event_chest.html";
 }
 
+
+function goToExercise() {
+  window.location.href = "exercise.html";
+}
+
+
 function goToCalendar() {
   window.location.href = "workout_calendar.html";
 }
@@ -114,6 +120,10 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+
+
+
+
 // 회복력 선택에 따라 디로딩 주기 업데이트
 function updateDeloadingCycle() {
   var resilience = document.getElementById("resilience").value;
@@ -121,11 +131,11 @@ function updateDeloadingCycle() {
 
   // 회복력 선택에 따른 주기 설정
   var cycleDuration = {
-    best: "8주",
-    upper: "7주",
-    middle: "6주",
-    lower: "5주",
-    lowest: "4주",
+      "best": "8주",
+      "upper": "7주",
+      "middle": "6주",
+      "lower": "5주",
+      "lowest": "4주"
   };
 
   // (추천 : n주) 표시
