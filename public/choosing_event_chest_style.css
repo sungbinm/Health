@@ -87,6 +87,7 @@
 .text-wrapper:hover {
   background-color: gray;
 }
+
 #loginButton,
 #logoutButton {
   display: none;
@@ -285,13 +286,15 @@
 .div-wrapper .frame-9 {
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
+  align-items: center; /* 세로 가운데 정렬 */
+  justify-content: center; /* 가로 정렬, 필요에 따라 조정 */
   gap: 10px 10px;
   position: relative;
   align-self: stretch;
   width: 100%;
   flex: 0 0 auto;
 }
+
 
 .div-wrapper .frame-10 {
   display: inline-flex;
@@ -301,9 +304,18 @@
   padding: 10px 30px;
   position: relative;
   flex: 0 0 auto;
+  width: 300px;
   background-color: #fbfbfb;
   border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* 부드러운 색상 전환을 위해 */
 }
+
+.div-wrapper .frame-10:hover {
+  cursor: pointer; /* 커서 모양 */
+  background-color: #e0e0e0; /* 마우스를 올렸을 때 배경 색상 */
+}
+
 
 .div-wrapper .text-wrapper-6 {
   position: relative;

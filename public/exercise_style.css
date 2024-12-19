@@ -6,75 +6,99 @@
     align-items: center;
     position: relative;
     background-color: #ffffff;
-  }
+}
+
+.screen .frame {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  flex: 1;
+  align-self: stretch;
+  width: 100%;
+  flex-grow: 1;
+}
   
-  .screen .frame {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    position: relative;
-    flex: 1;
-    align-self: stretch;
-    width: 100%;
-    flex-grow: 1;
-  }
+.screen .div {
+  display: flex;
+  max-height: 76px;
+  height: 76px;
+  align-items: center;
+  justify-content: space-between; /* 로고와 버튼을 양쪽에 배치 */
+  gap: 50px;
+  padding: 10px 20px;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  background-color: #ffffff;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-color: #eeeeee;
+}
   
-  .screen .div {
-    display: flex;
-    max-height: 76px;
-    height: 76px;
-    align-items: center;
-    justify-content: center;
-    gap: 50px;
-    padding: 10px 20px;
-    position: relative;
-    align-self: stretch;
-    width: 100%;
-    background-color: #ffffff;
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    border-color: #eeeeee;
-  }
+.screen .rectangle {
+  position: relative;
+  width: 52px;
+  height: 30px;
+  background-color: #ffffff;
+}
+
+.screen .HEA-lth {
+  position: relative;
+  flex: 0 0 auto;
+  margin-left: -80px; /* 로고 왼쪽으로 밀기 */
+}
   
-  .screen .rectangle {
-    position: relative;
-    width: 52px;
-    height: 30px;
-    background-color: #ffffff;
-  }
+.logo-container {
+  flex-grow: 1; /* 로고가 중앙에 오게 함 */
+  display: flex;
+  justify-content: center;
+}
+
+.user-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: absolute; /* 오른쪽에 고정 */
+  right: 20px;
+}
   
-  .screen .HEA-lth {
-    position: relative;
-    flex: 0 0 auto;
-  }
+.text-wrapper {
+  all: unset;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px; /* 충분한 여백을 줘서 텍스트가 잘리지 않도록 */
+  cursor: pointer;
+  background-color: black;
+  border: 1px solid var(--color-border-brand-default);
+  border-radius: 3px;
+  font-family: var(--single-line-body-base-font-family);
+  font-weight: var(--single-line-body-base-font-weight);
+  color: var(--color-text-brand-on-brand);
+  font-size: 14px; /* 폰트 크기 조정 */
+  letter-spacing: var(--single-line-body-base-letter-spacing);
+  line-height: var(--single-line-body-base-line-height);
+  white-space: nowrap; /* 텍스트가 줄바꿈 없이 한 줄로 표시 */
+  overflow: hidden;
+  text-overflow: ellipsis; /* 텍스트가 너무 길 경우 ...으로 표시 */
+}
   
-  .text-wrapper {
-    all: unset;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 52px;
-    height: 30px;
-    padding: var(--size-space-300);
-    cursor: pointer;
-    background-color: black;
-    border: 1px solid var(--color-border-brand-default);
-    border-radius: 3px;
-    font-family: var(--single-line-body-base-font-family);
-    font-weight: var(--single-line-body-base-font-weight);
-    color: var(--color-text-brand-on-brand);
-    font-size: var(--single-line-body-base-font-size);
-    letter-spacing: var(--single-line-body-base-letter-spacing);
-    line-height: var(--single-line-body-base-line-height);
-    white-space: nowrap;
-    font-style: var(--single-line-body-base-font-style);
-  }
-  
-  .text-wrapper:hover {
-    background-color: gray;
-  }
-  
+.text-wrapper:hover {
+  background-color: gray;
+}
+
+#loginButton,
+#logoutButton {
+  display: none;
+}
+
+#logoutButton.show,
+#usernameDisplay.show {
+  display: block;
+}
+
   .screen .frame-wrapper {
     display: flex;
     min-width: 393px;
@@ -91,24 +115,55 @@
     background-color: #c4c4c4;
   }
   
-  .screen .frame-2 {
-    display: inline-flex;
+  .div-wrapper .frame-2 {
+    display: flex;
     flex-direction: column;
     min-width: 393px;
     max-width: 600px;
-    min-height: 400px;
+    min-height: 703px;
     align-items: center;
     justify-content: center;
     position: relative;
+    flex: 1;
     align-self: stretch;
-    flex: 0 0 auto;
-    margin-top: -600px;
+    flex-grow: 1;
+    margin-top: -6.5px;
     margin-bottom: -6.5px;
-    margin-left: -70px;
-    margin-right: -70px;
+    margin-left: -200px;
+    margin-right: -200px;
     background-color: #ffffff;
   }
   
+  .div-wrapper .frame-111 {
+    display: flex;
+    flex-direction: column;
+    max-height: 155px;
+    height: 125px;
+    align-items: center;
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+  }
+  
+  .div-wrapper .frame-222 {
+    display: flex;
+    width: 126px;
+    height: 79px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+  }
+
+  .div-wrapper .frame-333 {
+    display: flex;
+    width: 137px;
+    height: 23px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+  }
   .screen .div-wrapper {
     display: flex;
     width: 126px;
@@ -124,7 +179,7 @@
     width: fit-content;
     margin-top: -1px;
     font-family: "Inter", Helvetica;
-    font-weight: 700;
+    font-weight: 600;
     color: #000000;
     font-size: 24px;
     letter-spacing: 0;
@@ -357,3 +412,53 @@
     font-weight: bold; /* 글씨 굵게 */
     display: inline; /* 텍스트에만 스타일 적용 */
   }
+
+  .div-wrapper .pagination-previous-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 23px;
+    align-items: center;
+    gap: 20px;
+    padding: 0px 0px 10px;
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+  }
+  
+  .div-wrapper .pagination-previous {
+    display: flex;
+    height: 23px;
+    align-items: center;
+    gap: var(--size-space-200);
+    padding: var(--size-space-200) var(--size-space-300) var(--size-space-200)
+      var(--size-space-300);
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+    margin-bottom: -10px;
+    border-radius: var(--size-radius-200);
+  }
+
+  .div-wrapper .text-wrapper-20 {
+    position: relative;
+    width: fit-content;
+    margin-top: -5.5px;
+    margin-bottom: -3.5px;
+    font-family: var(--single-line-body-base-font-family);
+    font-weight: var(--single-line-body-base-font-weight);
+    color: var(--color-text-default-default);
+    font-size: var(--single-line-body-base-font-size);
+    letter-spacing: var(--single-line-body-base-letter-spacing);
+    line-height: var(--single-line-body-base-line-height);
+    white-space: nowrap;
+    font-style: var(--single-line-body-base-font-style);
+  }
+
+  .div-wrapper .arrow-left {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  margin-top: -4.5px;
+  margin-bottom: -4.5px;
+}
+  
