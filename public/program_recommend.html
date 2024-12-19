@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="globals.css" />
+    <link rel="stylesheet" href="workout_calendar_styleguide.css" />
+    <link rel="stylesheet" href="program_recommend.css" />
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <div class="screen">
+      <div class="frame">
+        <div class="div1">
+          <div class="rectangle"></div>
+          <div class="logo-container">
+            <img class="HEA-lth"
+              src="https://c.animaapp.com/7SI92Z7a/img/health@2x.png" />
+          </div>
+          <div class="user-actions">
+            <span id="usernameDisplay"></span>
+            <button
+              class="text-wrapper" id="loginButton"
+              onclick="goToLogin()">로그인</button>
+            <button id="logoutButton" onclick="logout()">로그아웃</button>
+          </div>
+        </div>
+      </div>
+      <div class="frame-wrapper">
+        <div class="div">
+          <div class="container">
+            <h1>운동 프로그램 추천 시스템</h1>
+            <label for="height">키 (cm): </label>
+            <input type="number" id="height" placeholder="키 (cm)" />
+
+            <label for="weight">몸무게 (kg): </label>
+            <input type="number" id="weight" placeholder="몸무게 (kg)" />
+
+            <button id="uploadButton" onclick="generateProgram()">운동 프로그램
+              추천</button>
+
+            <div id="program">
+              <h2>추천 운동 프로그램</h2>
+              <div id="programList"></div>
+              <button id="uploadButton" onclick="uploadProgram()">운동 프로그램
+                업로드하기</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="frame-4">
+        <img class="frame-5"
+          src="https://c.animaapp.com/HOXx6qsn/img/frame-65.png"
+          onclick="goToProgram()" />
+        <div class="frame-6" onclick="goToHome()">
+          <div class="img">
+            <div class="img-wrapper">
+              <img class="frame-7"
+                src="https://c.animaapp.com/HOXx6qsn/img/frame-61.svg" />
+            </div>
+          </div>
+          <div class="text-wrapper-4">홈</div>
+        </div>
+        <div class="frame-8" onclick="goToTraining()">
+          <img class="img"
+            src="https://c.animaapp.com/HOXx6qsn/img/weightlifting.svg" />
+          <div class="text-wrapper-4">훈련</div>
+        </div>
+      </div>
+    </div>
+    <script src="program_recommend.js"></script>
+  </body>
+</html>

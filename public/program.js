@@ -208,3 +208,46 @@ function deleteProgram(day, programId) {
       alert("삭제 중 오류 발생.");
     });
 }
+
+// 로컬 스토리지에서 운동 프로그램 데이터를 가져와 표에 표시
+window.addEventListener("DOMContentLoaded", function () {
+  const programTable = document
+    .getElementById("uploadedProgramTable")
+    .getElementsByTagName("tbody")[0];
+  const program = JSON.parse(localStorage.getItem("currentProgram"));
+
+  if (!program || program.length === 0) {
+    alert("업로드된 운동 프로그램이 없습니다.");
+    return;
+  }
+
+  program.forEach((day) => {
+    day.exercises.forEach((exercise) => {
+      const row = programTable.insertRow();
+
+      // 요일 열 추가
+      const dayCell = row.insertCell();
+      dayCell.textContent = day.day;
+
+      // 운동 종류
+      const exerciseCell = row.insertCell();
+      exerciseCell.textContent = exercise.name;
+
+      // 횟수
+      const repsCell = row.insertCell();
+      repsCell.textContent = exercise.reps;
+
+      // 세트 수
+      const setsCell = row.insertCell();
+      setsCell.textContent = exercise.sets;
+
+      // 무게
+      const weightCell = row.insertCell();
+      weightCell.textContent = exercise.weight;
+
+      // 휴식 시간
+      const restCell = row.insertCell();
+      restCell.textContent = exercise.rest;
+    });
+  });
+});
