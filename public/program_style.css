@@ -495,3 +495,8 @@
   font-weight: bold;
   border-color: #6c757d;
 }
+
+.screen .calendar:hover {
+  cursor: pointer; /* 커서 모양 */
+  background-color: #e0e0e0; /* 마우스를 올렸을 때 배경 색상 */
+}
